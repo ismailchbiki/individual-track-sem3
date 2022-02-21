@@ -1,11 +1,4 @@
-stages:
-  - gradle build
-  - gradle test
+tags:
+   - ci
 build:
-  stage: gradle build
-  script:
-    - echo "Building"
-test:
-  stage: gradle test
-  script:
-    - echo "Testing"
+ stage: gradle build
