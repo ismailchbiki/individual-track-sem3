@@ -1,5 +1,0 @@
-gitlab_runner_pipeline_config:
-    tags:
-      - ci
-    script:
-      - echo hello world
