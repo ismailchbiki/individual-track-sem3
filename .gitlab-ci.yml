@@ -1,6 +1,4 @@
-image: 'docker:latest'
-services:
-  - 'docker:dind'
+image: 'alpine:latest'
 build:
   stage: build
   script:
