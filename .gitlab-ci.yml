@@ -1,2 +1,15 @@
+tags:
+  - ci
 build:
- stage: gradle build
+  stage: build
+  script:
+    - ./gradle build -x test
+   # - ./gradlew.bat --stop
+test:
+  stage: test
+  script:
+    - ./gradle test
+   # - ./gradlew.bat -stop
+after_script:
+  - echo "End CI"
+  - exit
