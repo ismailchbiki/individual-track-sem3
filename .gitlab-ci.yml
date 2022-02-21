@@ -1,13 +1,12 @@
-# build:
-#   stage: build
-#   script:
-#     - ./gradle build -x test
-   # - ./gradlew.bat --stop
+image: 'alpine:latest'
+build:
+  stage: build
+  script:
+    - ./gradle build -x test
 test:
   stage: test
   script:
     - ./gradle test
-   # - ./gradlew.bat -stop
 after_script:
   - echo "End CI"
   - exit
