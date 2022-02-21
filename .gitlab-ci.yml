@@ -1,11 +1,11 @@
 stages:
-  - build
-  - test
+  - gradle build
+  - gradle test
 build:
-  stage: build
+  stage: gradle build
   script:
     - echo "Building"
 test:
-  stage: test
+  stage: gradle test
   script:
     - echo "Testing"
