@@ -17,7 +17,7 @@ class KiteLessonControllerTest {
         //Act
         Integer response = controller.findAll().size();
         //Assert
-        assertEquals(response, 3);
+        assertEquals(response, 4);
     }
 
     @Test
