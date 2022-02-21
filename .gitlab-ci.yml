@@ -2,11 +2,11 @@ image: 'alpine:latest'
 build:
   stage: build
   script:
-    - ./gradle build -x test
+    - gradle build -x test
 test:
   stage: test
   script:
-    - ./gradle test
+    - gradle test
 after_script:
   - echo "End CI"
   - exit
