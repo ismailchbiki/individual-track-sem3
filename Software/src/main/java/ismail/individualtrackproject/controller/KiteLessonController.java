@@ -1,7 +1,9 @@
 package ismail.individualtrackproject.controller;
 
+import ismail.individualtrackproject.business.Implementation.KiteLessonBusinessImpl;
+import ismail.individualtrackproject.business.Interface.KiteLessonBusiness;
 import ismail.individualtrackproject.model.KiteModel;
-import ismail.individualtrackproject.repository.KiteLessonRepository;
+import ismail.individualtrackproject.dataLayer.Implementation.KiteLessonDataAccessImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,43 +14,44 @@ import java.util.List;
 @RequestMapping("/kitelessons")
 public class KiteLessonController {
 
-    private final KiteLessonRepository kiteLessonsRepo;
+    //private final KiteLessonBusiness _kiteLessonBusiness;
+    private final KiteLessonBusiness _kiteLessonBusiness;
 
-    public KiteLessonController(KiteLessonRepository repository) {
-        this.kiteLessonsRepo = repository;
+    public KiteLessonController(){
+        _kiteLessonBusiness = new KiteLessonBusinessImpl(new KiteLessonDataAccessImpl());
     }
 
     // Get Request: https://localhost:8080/kitelessons
     @GetMapping
     public List<KiteModel> findAll(){
-        return kiteLessonsRepo.findAll();
+        return _kiteLessonBusiness.findAll();
     }
 
     // Get Request: https://localhost:8080/kitelessons/lessontype
     @GetMapping("/{type}")
     public KiteModel findByType(@PathVariable String type){
-        return kiteLessonsRepo.findByType(type);
+        return _kiteLessonBusiness.findByType(type);
     }
 
     // Post Request: https://localhost:8080/kitelessons
     @ResponseStatus(HttpStatus.CREATED) //201 status code
     @PostMapping
     public KiteModel create(@Valid @RequestBody KiteModel kiteLesson){
-        return kiteLessonsRepo.create(kiteLesson);
+        return _kiteLessonBusiness.create(kiteLesson);
     }
 
     // Put Request: https://localhost:8080/kitelessons
     @ResponseStatus(HttpStatus.NO_CONTENT) //201 status code
     @PutMapping("/{type}")
     public void update(@RequestBody KiteModel kiteLesson, @PathVariable String type){
-        kiteLessonsRepo.update(kiteLesson, type);
+        _kiteLessonBusiness.update(kiteLesson, type);
     }
 
     // Delete Request: https://localhost:8080/kitelessons
     @ResponseStatus(HttpStatus.NO_CONTENT) //201 status code
     @DeleteMapping("/{type}")
     public void delete(@PathVariable String type){
-        kiteLessonsRepo.delete(type);
+        _kiteLessonBusiness.delete(type);
     }
 
 }

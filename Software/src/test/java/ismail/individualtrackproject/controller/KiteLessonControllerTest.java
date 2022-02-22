@@ -1,9 +1,7 @@
 package ismail.individualtrackproject.controller;
 
 import ismail.individualtrackproject.model.KiteModel;
-import ismail.individualtrackproject.repository.KiteLessonRepository;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,7 +11,7 @@ class KiteLessonControllerTest {
     @Test
     void findAll() {
         //Arrange
-        KiteLessonController controller = new KiteLessonController(new KiteLessonRepository());
+        KiteLessonController controller = new KiteLessonController();
         //Act
         Integer response = controller.findAll().size();
         //Assert
@@ -23,7 +21,7 @@ class KiteLessonControllerTest {
     @Test
     void findByType_private() {
         //Arrange
-        KiteLessonController controller = new KiteLessonController(new KiteLessonRepository());
+        KiteLessonController controller = new KiteLessonController();
         //Act
         KiteModel response = controller.findByType("private");
         //Assert
@@ -33,7 +31,7 @@ class KiteLessonControllerTest {
     @Test
     void findByType_group() {
         //Arrange
-        KiteLessonController controller = new KiteLessonController(new KiteLessonRepository());
+        KiteLessonController controller = new KiteLessonController();
         //Act
         KiteModel response = controller.findByType("group");
         //Assert
@@ -43,7 +41,7 @@ class KiteLessonControllerTest {
     @Test
     void findByType_semiPrivate() {
         //Arrange
-        KiteLessonController controller = new KiteLessonController(new KiteLessonRepository());
+        KiteLessonController controller = new KiteLessonController();
         //Act
         KiteModel response = controller.findByType("semi private");
         //Assert
