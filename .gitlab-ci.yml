@@ -1,4 +1,4 @@
-image: java:17-jdk
+image: docker:latest
 
 build:
   stage: build
