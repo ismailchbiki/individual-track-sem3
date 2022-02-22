@@ -1,5 +1,9 @@
 build:
   stage: build
+  
+  only:
+    - Software
+  
   script:
     - gradle build -x test
 
