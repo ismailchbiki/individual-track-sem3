@@ -1,12 +1,16 @@
-image: 'alpine:latest'
 build:
   stage: build
+    
   script:
+    - cd Software
     - gradle build -x test
+
 test:
   stage: test
   script:
+    - cd Software
     - gradle test
+    
 after_script:
   - echo "End CI"
   - exit
