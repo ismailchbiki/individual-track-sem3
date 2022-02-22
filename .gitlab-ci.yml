@@ -1,12 +1,18 @@
 image: 'alpine:latest'
+
+services:
+   - docker:dind
+
 build:
   stage: build
   script:
     - gradle build -x test
+
 test:
   stage: test
   script:
     - gradle test
+    
 after_script:
   - echo "End CI"
   - exit
