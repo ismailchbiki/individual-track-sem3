@@ -14,10 +14,6 @@ public class KiteLessonBusinessImpl implements KiteLessonBusiness {
     @Autowired
     private KiteLessonDA _kiteLessonRepo;
 
-    /*public KiteLessonBusinessImpl(KiteLessonDataAccess _kiteLessonRepo) {
-        this._kiteLessonRepo = _kiteLessonRepo;
-    }*/
-
     @Override
     public List<KiteModel> findAll(){
         return _kiteLessonRepo.findAll();

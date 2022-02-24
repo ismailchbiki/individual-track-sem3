@@ -2,13 +2,14 @@ package ismail.individualtrackproject.controller;
 
 import ismail.individualtrackproject.model.KiteModel;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-//@SpringBootTest
+@SpringBootTest
 class KiteLessonControllerTest {
 
-    @Test
+    /*@Test
     void findAll() {
         //Arrange
         KiteLessonController controller = new KiteLessonController();
@@ -46,7 +47,7 @@ class KiteLessonControllerTest {
         KiteModel response = controller.findByType("semi private");
         //Assert
         assertNotNull(response);
-    }
+    }*/
 
     /*@Test
     void create() {
