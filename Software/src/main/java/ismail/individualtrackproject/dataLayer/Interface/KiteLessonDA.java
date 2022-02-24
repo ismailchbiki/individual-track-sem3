@@ -4,7 +4,7 @@ import ismail.individualtrackproject.model.KiteModel;
 
 import java.util.List;
 
-public interface KiteLessonDataAccess {
+public interface KiteLessonDA {
     List<KiteModel> findAll();
     KiteModel create(KiteModel kiteLesson);
     void update(KiteModel newKiteLesson, String type);

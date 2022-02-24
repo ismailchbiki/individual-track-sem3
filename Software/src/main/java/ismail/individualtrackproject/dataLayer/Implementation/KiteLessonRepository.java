@@ -1,17 +1,17 @@
 package ismail.individualtrackproject.dataLayer.Implementation;
 
 import ismail.individualtrackproject.model.KiteModel;
-import ismail.individualtrackproject.dataLayer.Interface.KiteLessonDataAccess;
+import ismail.individualtrackproject.dataLayer.Interface.KiteLessonDA;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class KiteLessonDataAccessImpl implements KiteLessonDataAccess {
-    List<KiteModel> kiteLessons = new ArrayList<>();
+public class KiteLessonRepository implements KiteLessonDA {
+    private List<KiteModel> kiteLessons = new ArrayList<>();
 
-    public KiteLessonDataAccessImpl() {
+    public KiteLessonRepository() {
         KiteModel privateLesson = new KiteModel("private", 2, 1, 150.0);
         KiteModel semiPrivateLesson = new KiteModel("semi private", 2, 2, 100.0);
         KiteModel groupLesson = new KiteModel("group", 2, 4, 60.0);

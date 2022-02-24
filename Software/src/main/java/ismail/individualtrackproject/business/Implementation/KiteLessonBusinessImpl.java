@@ -2,17 +2,21 @@ package ismail.individualtrackproject.business.Implementation;
 
 import ismail.individualtrackproject.business.Interface.KiteLessonBusiness;
 import ismail.individualtrackproject.model.KiteModel;
-import ismail.individualtrackproject.dataLayer.Interface.KiteLessonDataAccess;
+import ismail.individualtrackproject.dataLayer.Interface.KiteLessonDA;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class KiteLessonBusinessImpl implements KiteLessonBusiness {
 
-    KiteLessonDataAccess _kiteLessonRepo;
+    @Autowired
+    private KiteLessonDA _kiteLessonRepo;
 
-    public KiteLessonBusinessImpl(KiteLessonDataAccess _kiteLessonRepo) {
+    /*public KiteLessonBusinessImpl(KiteLessonDataAccess _kiteLessonRepo) {
         this._kiteLessonRepo = _kiteLessonRepo;
-    }
+    }*/
 
     @Override
     public List<KiteModel> findAll(){

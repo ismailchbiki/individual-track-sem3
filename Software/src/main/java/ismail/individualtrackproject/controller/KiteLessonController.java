@@ -3,7 +3,8 @@ package ismail.individualtrackproject.controller;
 import ismail.individualtrackproject.business.Implementation.KiteLessonBusinessImpl;
 import ismail.individualtrackproject.business.Interface.KiteLessonBusiness;
 import ismail.individualtrackproject.model.KiteModel;
-import ismail.individualtrackproject.dataLayer.Implementation.KiteLessonDataAccessImpl;
+import ismail.individualtrackproject.dataLayer.Implementation.KiteLessonRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,11 +16,12 @@ import java.util.List;
 public class KiteLessonController {
 
     //private final KiteLessonBusiness _kiteLessonBusiness;
-    private final KiteLessonBusiness _kiteLessonBusiness;
+    @Autowired
+    private KiteLessonBusiness _kiteLessonBusiness;
 
-    public KiteLessonController(){
-        _kiteLessonBusiness = new KiteLessonBusinessImpl(new KiteLessonDataAccessImpl());
-    }
+    /*public KiteLessonController(){
+        _kiteLessonBusiness = new KiteLessonBusinessImpl(new KiteLessonRepository());
+    }*/
 
     // Get Request: https://localhost:8080/kitelessons
     @GetMapping

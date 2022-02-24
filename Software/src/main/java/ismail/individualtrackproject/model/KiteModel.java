@@ -10,9 +10,9 @@ import javax.validation.constraints.NotEmpty;
 @AllArgsConstructor
 @Getter
 public class KiteModel {
-    @NotEmpty
-    String type;
-    Integer hours;
-    Integer people;
-    Double price;
+    @NotEmpty //Validation
+    private String type;
+    private Integer hours;
+    private Integer people;
+    private Double price;
 }
