@@ -1,4 +1,4 @@
-package ismail.individualtrackproject.model;
+package ismail.myapplication.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

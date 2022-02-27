@@ -1,19 +1,18 @@
-package ismail.individualtrackproject.business.Implementation;
+package ismail.myapplication.service;
 
-import ismail.individualtrackproject.business.Interface.KiteLessonBusiness;
-import ismail.individualtrackproject.model.KiteModel;
-import ismail.individualtrackproject.dataLayer.Interface.KiteLessonDA;
+import ismail.myapplication.model.KiteModel;
+import ismail.myapplication.persistence.KiteLessonDAO;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @AllArgsConstructor
 @Service
-public class KiteLessonBusinessImpl implements KiteLessonBusiness {
+public class KiteLessonBusiness implements KiteLessonService {
 
-    //@Autowired
-    private KiteLessonDA kiteLessonRepo;
+    private KiteLessonDAO kiteLessonRepo;
 
     @Override
     public List<KiteModel> findAll(){

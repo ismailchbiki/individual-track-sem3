@@ -1,21 +1,17 @@
-package ismail.individualtrackproject.business.Implementation;
+package ismail.myapplication.service;
 
-import ismail.individualtrackproject.business.Interface.KiteLessonBusiness;
-import ismail.individualtrackproject.dataLayer.Interface.KiteLessonDA;
-import ismail.individualtrackproject.model.KiteModel;
+import ismail.myapplication.model.KiteModel;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
-class KiteLessonBusinessImplTest {
+class KiteLessonBusinessTest {
 
     @Autowired
-    KiteLessonBusiness kiteLesson;
+    KiteLessonService kiteLesson;
     KiteModel privateLesson;
 
     /*@BeforeEach

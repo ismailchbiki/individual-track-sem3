@@ -1,10 +1,10 @@
-package ismail.individualtrackproject.business.Interface;
+package ismail.myapplication.service;
 
-import ismail.individualtrackproject.model.KiteModel;
+import ismail.myapplication.model.KiteModel;
 
 import java.util.List;
 
-public interface KiteLessonBusiness {
+public interface KiteLessonService {
     List<KiteModel> findAll();
     KiteModel findByType(String type);
     KiteModel create(KiteModel kiteLesson);
