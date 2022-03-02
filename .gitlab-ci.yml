@@ -2,13 +2,13 @@ build:
   stage: build
     
   script:
-    - cd Software
+    - cd Software/Backend
     - gradle build -x test
 
 test:
   stage: test
   script:
-    - cd Software
+    - cd Software/Backend
     - gradle test
     
 after_script:
