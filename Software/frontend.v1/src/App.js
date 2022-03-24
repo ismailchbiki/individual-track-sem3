@@ -1,23 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import ListKiteLessonsComponent from "./components/ListKiteLessonsComponent";
+import HeaderComponent from "./components/HeaderComponent";
+import FooterComponent from "./components/FooterComponent";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Ismail Chbiki
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Start building frontend UI
-        </a>
-      </header>
+    <div>
+      <HeaderComponent />
+      <div className="container">
+        <ListKiteLessonsComponent />
+      </div>
+      <FooterComponent />
     </div>
   );
 }
