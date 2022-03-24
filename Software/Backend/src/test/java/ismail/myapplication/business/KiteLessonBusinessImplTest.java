@@ -1,29 +1,29 @@
-package ismail.myapplication.service;
+package ismail.myapplication.business;
 
-import ismail.myapplication.model.KiteModel;
+import ismail.myapplication.model.KiteLesson;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class KiteLessonBusinessTest {
+class KiteLessonBusinessImplTest {
 
-    @Autowired
-    KiteLessonService kiteLesson;
-    KiteModel privateLesson;
+    private KiteLesson lesson;
+    private KiteLessonBusiness kiteLessonBusiness;
+
+    public KiteLessonBusinessImplTest(KiteLessonBusiness kiteLessonBusiness) {
+        this.kiteLessonBusiness = kiteLessonBusiness;
+    }
 
     /*@BeforeEach
     void setUp(){
-        kiteLesson = new KiteLessonBusinessImpl();
+        kiteLessonBusiness = kiteLessonBusiness;
     }*/
-
 
     @Test
     void findByType() {
         //Arrange
-        Object lesson = kiteLesson.findByType("private");
+        Object lesson = kiteLessonBusiness.findByType("private");
         //Act
 
         //Assert
@@ -33,11 +33,11 @@ class KiteLessonBusinessTest {
     @Test
     void create() {
         //Arrange
-        privateLesson = new KiteModel("private", 2, 1, 150.0);
+        lesson = new KiteLesson("private", 2, 1, 150.0);
 
         //Act
-        kiteLesson.findAll().add(privateLesson);
-        int size = kiteLesson.findAll().size();
+        kiteLessonBusiness.findAll().add(lesson);
+        int size = kiteLessonBusiness.findAll().size();
 
         //Assert
         Assertions.assertEquals(size, 4);
@@ -46,7 +46,7 @@ class KiteLessonBusinessTest {
     @Test
     void findAll() {
         //Arrange
-        int size = kiteLesson.findAll().size();
+        int size = kiteLessonBusiness.findAll().size();
         //Act
 
         //Assert
@@ -56,11 +56,11 @@ class KiteLessonBusinessTest {
     @Test
     void update() {
         //Arrange
-        privateLesson = new KiteModel("collective", 3, 4, 50.0);
+        lesson = new KiteLesson("collective", 3, 4, 50.0);
 
         //Act
-        kiteLesson.update(privateLesson, "group");
-        KiteModel newLessonType = kiteLesson.findByType("collective");
+        kiteLessonBusiness.update(lesson, "group");
+        KiteLesson newLessonType = kiteLessonBusiness.findByType("collective");
 
         //Assert
         Assertions.assertNotEquals(newLessonType, null);
@@ -71,10 +71,10 @@ class KiteLessonBusinessTest {
     @Test
     void delete() {
         //Arrange
-        kiteLesson.delete("collective");
+        kiteLessonBusiness.delete("collective");
 
         //Act
-        KiteModel newLessonType = kiteLesson.findByType("collective");
+        KiteLesson newLessonType = kiteLessonBusiness.findByType("collective");
 
         //Assert
         Assertions.assertNull(newLessonType);

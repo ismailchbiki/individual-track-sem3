@@ -1,38 +1,40 @@
-package ismail.myapplication.service;
+package ismail.myapplication.business;
 
-import ismail.myapplication.model.KiteModel;
-import ismail.myapplication.persistence.KiteLessonDAO;
+import ismail.myapplication.model.KiteLesson;
+import ismail.myapplication.persistence.KiteLessonRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@AllArgsConstructor
 @Service
-public class KiteLessonBusiness implements KiteLessonService {
+public class KiteLessonBusinessImpl implements KiteLessonBusiness {
 
-    private KiteLessonDAO kiteLessonRepo;
+    private KiteLessonRepository kiteLessonRepo;
+
+    public KiteLessonBusinessImpl(KiteLessonRepository kiteLessonRepo) {
+        this.kiteLessonRepo = kiteLessonRepo;
+    }
 
     @Override
-    public List<KiteModel> findAll(){
+    public List<KiteLesson> findAll(){
         return kiteLessonRepo.findAll();
     }
 
     @Override
-    public KiteModel findByType(String type){
+    public KiteLesson findByType(String type){
         return findAll().stream().filter(kite -> kite.getType().equals(type)).findFirst().orElse(null);
     }
 
     @Override
-    public KiteModel create(KiteModel kiteLesson){
+    public KiteLesson create(KiteLesson kiteLesson){
         kiteLessonRepo.create(kiteLesson);
         return kiteLesson;
     }
 
     @Override
-    public void update(KiteModel newKiteLesson, String type){
-        KiteModel existingLesson = kiteLessonRepo.findAll().stream().filter(lesson -> lesson.getType().equals(type))
+    public void update(KiteLesson newKiteLesson, String type){
+        KiteLesson existingLesson = kiteLessonRepo.findAll().stream().filter(lesson -> lesson.getType().equals(type))
                 .findFirst()
                 .orElseThrow(() -> (new IllegalArgumentException("Not Found")));
 
