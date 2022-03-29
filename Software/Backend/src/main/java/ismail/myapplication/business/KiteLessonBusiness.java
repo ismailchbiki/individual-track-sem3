@@ -5,9 +5,10 @@ import ismail.myapplication.dto.KiteLessonDTO;
 import java.util.List;
 
 public interface KiteLessonBusiness {
-    List<KiteLessonDTO> findAll();
-    KiteLessonDTO findByType(String type);
-    KiteLessonDTO create(KiteLessonDTO kiteLessonDTO);
-    void update(KiteLessonDTO newKiteLessonDTO, String type);
-    void delete(String type);
+    List<KiteLessonDTO> findAllKiteLessons();
+    KiteLessonDTO findKiteLessonById(long id);
+    KiteLessonDTO findKiteLessonByType(String type);
+    KiteLessonDTO createKiteLesson(KiteLessonDTO kiteLessonDTO);
+    KiteLessonDTO updateKiteLesson(long id, KiteLessonDTO newKiteLessonDTO);
+    void deleteKiteLesson(long id);
 }

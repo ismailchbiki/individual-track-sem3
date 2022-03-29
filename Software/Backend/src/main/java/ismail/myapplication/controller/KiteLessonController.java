@@ -1,8 +1,7 @@
 package ismail.myapplication.controller;
 
-import ismail.myapplication.exception.ResourceNotFoundException;
-import ismail.myapplication.repository.KiteLessonRepository;
-import ismail.myapplication.repository.entity.KiteLesson;
+import ismail.myapplication.business.KiteLessonBusiness;
+import ismail.myapplication.dto.KiteLessonDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,60 +14,52 @@ import java.util.List;
 @RequestMapping("/api/v1/kitelessons")
 @AllArgsConstructor
 public class KiteLessonController {
-    private KiteLessonRepository kiteLessonRepository;
+    private KiteLessonBusiness kiteLessonBusiness;
 
     @GetMapping
-    public List<KiteLesson> findAll(){
-        return kiteLessonRepository.findAll();
+    public List<KiteLessonDTO> findAll(){
+        return kiteLessonBusiness.findAllKiteLessons();
     }
 
     //Get Kite Lesson by ID
     @GetMapping(value = "/{id}")
-    public ResponseEntity<KiteLesson> findKiteLessonById(@PathVariable long id){
-        KiteLesson kiteLesson = kiteLessonRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Kite Lesson is not found with Id: " + id));
+    public ResponseEntity<KiteLessonDTO> findKiteLessonById(@PathVariable long id){
+        KiteLessonDTO kiteLessonDTO = kiteLessonBusiness.findKiteLessonById(id);
 
-        return ResponseEntity.ok(kiteLesson);
+        return ResponseEntity.ok(kiteLessonDTO);
     }
 
     //Get Kite Lesson by type
     @GetMapping("/type/{type}")
-    public ResponseEntity<KiteLesson> findKiteLessonByType(@PathVariable String type){
-        for (KiteLesson kiteLesson : kiteLessonRepository.findAll()) {
-            if (kiteLesson.getType().equals(type)) {
-                return ResponseEntity.ok().body(kiteLesson);
-            }
+    public ResponseEntity<KiteLessonDTO> findKiteLessonByType(@PathVariable String type){
+
+        KiteLessonDTO kiteLessonDTO = kiteLessonBusiness.findKiteLessonByType(type);
+        if (kiteLessonDTO == null) {
+            ResponseEntity.notFound().build();
         }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.ok().body(kiteLessonDTO);
     }
 
     //create kite lesson
     @PostMapping
-    public KiteLesson createKiteLesson(@RequestBody /* -> converts json to java object*/ KiteLesson kiteLesson){
-        return kiteLessonRepository.save(kiteLesson);
+    public KiteLessonDTO createKiteLesson(@RequestBody /* -> converts json to java object*/ KiteLessonDTO kiteLessonDTO){
+        return kiteLessonBusiness.createKiteLesson(kiteLessonDTO);
     }
 
     //update kite lesson
     @PutMapping("/{id}")
-    public ResponseEntity<KiteLesson> updateKiteLesson(@PathVariable long id, @RequestBody KiteLesson kiteLesson){
-        KiteLesson existingKiteLesson = kiteLessonRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No kite lesson with this id:" + id + " is found."));
+    public ResponseEntity<KiteLessonDTO> updateKiteLesson(@PathVariable long id, @RequestBody KiteLessonDTO kiteLessonDTO){
 
-        existingKiteLesson.setType(kiteLesson.getType());
-        existingKiteLesson.setHours(kiteLesson.getHours());
-        existingKiteLesson.setPersons(kiteLesson.getPersons());
-        existingKiteLesson.setPrice(kiteLesson.getPrice());
-
-        kiteLessonRepository.save(existingKiteLesson);
-        return ResponseEntity.ok(existingKiteLesson);
+        KiteLessonDTO newKiteLesson = kiteLessonBusiness.updateKiteLesson(id, kiteLessonDTO);
+        return ResponseEntity.ok(newKiteLesson);
     }
 
     //delete kite lesson
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteKiteLesson(@PathVariable long id){
-        KiteLesson existingKiteLesson = kiteLessonRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Kite lesson with this id:" + id + " doesn't exist."));
-        kiteLessonRepository.delete(existingKiteLesson);
+        KiteLessonDTO existingKiteLesson = kiteLessonBusiness.findKiteLessonById(id);
+        kiteLessonBusiness.deleteKiteLesson(existingKiteLesson.getId());
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
-
-
 

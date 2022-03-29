@@ -1,51 +1,75 @@
-/*
 package ismail.myapplication.business.impl;
 
 import ismail.myapplication.business.KiteLessonBusiness;
 import ismail.myapplication.dto.KiteLessonDTO;
+import ismail.myapplication.exception.ResourceNotFoundException;
 import ismail.myapplication.repository.KiteLessonRepository;
+import ismail.myapplication.repository.entity.KiteLesson;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class KiteLessonBusinessImpl implements KiteLessonBusiness {
 
-    private KiteLessonRepository kiteLessonRepo;
+    private KiteLessonRepository kiteLessonRepository;
 
-    public KiteLessonBusinessImpl(KiteLessonRepository kiteLessonRepo) {
-        this.kiteLessonRepo = kiteLessonRepo;
+    @Override
+    public List<KiteLessonDTO> findAllKiteLessons(){
+        return kiteLessonRepository.findAll()
+                .stream()
+                .map(KiteLessonConverter::convertEntityToDTO)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public List<KiteLessonDTO> findAll(){
-        return kiteLessonRepo.findAll();
+    public KiteLessonDTO findKiteLessonById(long id){
+        KiteLesson kiteLesson = kiteLessonRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Kite Lesson is not found with Id: " + id));
+
+        return KiteLessonConverter.convertEntityToDTO(kiteLesson);
     }
 
     @Override
-    public KiteLessonDTO findByType(String type){
-        return findAll().stream().filter(kite -> kite.getType().equals(type)).findFirst().orElse(null);
+    public KiteLessonDTO findKiteLessonByType(String type){
+        for (KiteLessonDTO kiteLessonDTO : findAllKiteLessons()) {
+            if (kiteLessonDTO.getType().equals(type)) {
+                return kiteLessonDTO;
+            }
+        }
+        return null;
     }
 
     @Override
-    public KiteLessonDTO create(KiteLessonDTO kiteLessonDTO){
-        kiteLessonRepo.create(kiteLessonDTO);
-        return kiteLessonDTO;
+    public KiteLessonDTO createKiteLesson(KiteLessonDTO kiteLessonDTO) {
+        KiteLesson KiteLesson = kiteLessonRepository.save(KiteLessonConverter.convertDTOToEntity(kiteLessonDTO));
+        return KiteLessonConverter.convertEntityToDTO(KiteLesson);
     }
 
     @Override
-    public void update(KiteLessonDTO newKiteLessonDTO, String type){
-        KiteLessonDTO existingLesson = kiteLessonRepo.findAll().stream().filter(lesson -> lesson.getType().equals(type))
-                .findFirst()
-                .orElseThrow(() -> (new IllegalArgumentException("Not Found")));
+    public KiteLessonDTO updateKiteLesson(long id, KiteLessonDTO newKiteLessonDTO) {
 
-        int i = kiteLessonRepo.findAll().indexOf(existingLesson);
-        kiteLessonRepo.findAll().set(i, newKiteLessonDTO);
+        KiteLesson existingKiteLesson = kiteLessonRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("No kite lesson with this id:" + id + " is found."));
+
+        existingKiteLesson.setType(newKiteLessonDTO.getType());
+        existingKiteLesson.setHours(newKiteLessonDTO.getHours());
+        existingKiteLesson.setPersons(newKiteLessonDTO.getPersons());
+        existingKiteLesson.setPrice(newKiteLessonDTO.getPrice());
+
+        kiteLessonRepository.save(existingKiteLesson);
+
+        return KiteLessonConverter.convertEntityToDTO(existingKiteLesson);
     }
 
     @Override
-    public void delete(String type){
-        kiteLessonRepo.findAll().removeIf(lesson -> lesson.getType().equals(type));
+    public void
+    deleteKiteLesson(long id) {
+        KiteLesson existingKiteLesson = kiteLessonRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Kite lesson with this id:" + id + " doesn't exist."));
+        kiteLessonRepository.delete(existingKiteLesson);
     }
 }
-*/
