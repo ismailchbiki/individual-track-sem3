@@ -1,20 +1,29 @@
 package ismail.myapplication.repository.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
+import lombok.*;
+import javax.persistence.*;
 
-import javax.validation.constraints.NotEmpty;
-
+@Entity
+@Table(name = "kite_lesson")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Component
+@Setter
 public class KiteLesson {
-    @NotEmpty //Validation
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "lesson_type")
     private String type;
-    private Integer hours;
-    private Integer people;
+
+    @Column(name = "duration_per_hours")
+    private Double hours;
+
+    @Column(name = "persons_per_lesson")
+    private Integer persons;
+
+    @Column(name = "lesson_price")
     private Double price;
 }

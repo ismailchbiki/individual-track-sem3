@@ -1,8 +1,13 @@
 package ismail.myapplication.controller;
 
 import ismail.myapplication.business.KiteLessonBusiness;
-import ismail.myapplication.dto.KiteLesson;
+import ismail.myapplication.dto.KiteLessonDTO;
+import ismail.myapplication.exception.ResourceNotFoundException;
+import ismail.myapplication.repository.KiteLessonRepository;
+import ismail.myapplication.repository.entity.KiteLesson;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -11,47 +16,47 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/v1/kitelessons")
+@AllArgsConstructor
 public class KiteLessonController {
 
-    private KiteLessonBusiness kiteLessonBusiness;
+    private KiteLessonRepository kiteLessonRepository;
 
-    public KiteLessonController(KiteLessonBusiness kiteLessonBusiness) {
-        this.kiteLessonBusiness = kiteLessonBusiness;
-    }
-
-    // Get Request: https://localhost:8080/kitelessons
     @GetMapping
     public List<KiteLesson> findAll(){
-        return kiteLessonBusiness.findAll();
+        return kiteLessonRepository.findAll();
     }
 
-    // Get Request: https://localhost:8080/kitelessons/lessontype
-    @GetMapping("/{type}")
-    public KiteLesson findByType(@PathVariable String type){
-        return kiteLessonBusiness.findByType(type);
-    }
+    /*@GetMapping("/{type}")
+    public ResponseEntity<KiteLesson> findByType(@PathVariable String type){
 
-    // Post Request: https://localhost:8080/kitelessons
-    @ResponseStatus(HttpStatus.CREATED) //201 status code
+        KiteLesson kiteLesson = kiteLessonRepository.find
+        return kiteLessonRepository.findByType(type);
+    }*/
+
     @PostMapping
-    public KiteLesson create(@Valid @RequestBody KiteLesson kiteLesson){
-        return kiteLessonBusiness.create(kiteLesson);
+    public KiteLesson createKiteLesson(@RequestBody /* -> converts json to java object*/ KiteLesson kiteLesson){
+        return kiteLessonRepository.save(kiteLesson);
     }
 
-    // Put Request: https://localhost:8080/kitelessons
-    @ResponseStatus(HttpStatus.NO_CONTENT) //201 status code
-    @PutMapping("/{type}")
-    public void update(@RequestBody KiteLesson kiteLesson, @PathVariable String type){
-        kiteLessonBusiness.update(kiteLesson, type);
+    @PutMapping("/{id}")
+    public ResponseEntity<KiteLesson> updateKiteLesson(@PathVariable long id, @RequestBody KiteLesson kiteLesson){
+        KiteLesson existingKiteLesson = kiteLessonRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No kite lesson with this id:" + id + " is found."));
+
+        existingKiteLesson.setType(kiteLesson.getType());
+        existingKiteLesson.setHours(kiteLesson.getHours());
+        existingKiteLesson.setPersons(kiteLesson.getPersons());
+        existingKiteLesson.setPrice(kiteLesson.getPrice());
+
+        kiteLessonRepository.save(existingKiteLesson);
+        return ResponseEntity.ok(existingKiteLesson);
     }
 
-    // Delete Request: https://localhost:8080/kitelessons
-    @ResponseStatus(HttpStatus.NO_CONTENT) //201 status code
-    @DeleteMapping("/{type}")
-    public void delete(@PathVariable String type){
-        kiteLessonBusiness.delete(type);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<HttpStatus> deleteKiteLesson(@PathVariable long id){
+        KiteLesson existingKiteLesson = kiteLessonRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Kite lesson with this id:" + id + " doesn't exist."));
+        kiteLessonRepository.delete(existingKiteLesson);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
 }
 
 

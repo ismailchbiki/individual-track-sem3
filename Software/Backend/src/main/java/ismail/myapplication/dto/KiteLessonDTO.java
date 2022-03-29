@@ -11,10 +11,11 @@ import javax.validation.constraints.NotEmpty;
 @AllArgsConstructor
 @Getter
 @Component
-public class KiteLesson {
+public class KiteLessonDTO {
     @NotEmpty //Validation
+    private Long id;
     private String type;
-    private Integer hours;
+    private Double hours;
     private Integer people;
     private Double price;
 }

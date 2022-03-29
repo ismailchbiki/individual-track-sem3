@@ -1,7 +1,8 @@
+/*
 package ismail.myapplication.business.impl;
 
 import ismail.myapplication.business.KiteLessonBusiness;
-import ismail.myapplication.dto.KiteLesson;
+import ismail.myapplication.dto.KiteLessonDTO;
 import ismail.myapplication.repository.KiteLessonRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,29 +18,29 @@ public class KiteLessonBusinessImpl implements KiteLessonBusiness {
     }
 
     @Override
-    public List<KiteLesson> findAll(){
+    public List<KiteLessonDTO> findAll(){
         return kiteLessonRepo.findAll();
     }
 
     @Override
-    public KiteLesson findByType(String type){
+    public KiteLessonDTO findByType(String type){
         return findAll().stream().filter(kite -> kite.getType().equals(type)).findFirst().orElse(null);
     }
 
     @Override
-    public KiteLesson create(KiteLesson kiteLesson){
-        kiteLessonRepo.create(kiteLesson);
-        return kiteLesson;
+    public KiteLessonDTO create(KiteLessonDTO kiteLessonDTO){
+        kiteLessonRepo.create(kiteLessonDTO);
+        return kiteLessonDTO;
     }
 
     @Override
-    public void update(KiteLesson newKiteLesson, String type){
-        KiteLesson existingLesson = kiteLessonRepo.findAll().stream().filter(lesson -> lesson.getType().equals(type))
+    public void update(KiteLessonDTO newKiteLessonDTO, String type){
+        KiteLessonDTO existingLesson = kiteLessonRepo.findAll().stream().filter(lesson -> lesson.getType().equals(type))
                 .findFirst()
                 .orElseThrow(() -> (new IllegalArgumentException("Not Found")));
 
         int i = kiteLessonRepo.findAll().indexOf(existingLesson);
-        kiteLessonRepo.findAll().set(i, newKiteLesson);
+        kiteLessonRepo.findAll().set(i, newKiteLessonDTO);
     }
 
     @Override
@@ -47,3 +48,4 @@ public class KiteLessonBusinessImpl implements KiteLessonBusiness {
         kiteLessonRepo.findAll().removeIf(lesson -> lesson.getType().equals(type));
     }
 }
+*/

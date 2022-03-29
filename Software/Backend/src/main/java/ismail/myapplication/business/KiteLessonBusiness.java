@@ -1,13 +1,13 @@
 package ismail.myapplication.business;
 
-import ismail.myapplication.dto.KiteLesson;
+import ismail.myapplication.dto.KiteLessonDTO;
 
 import java.util.List;
 
 public interface KiteLessonBusiness {
-    List<KiteLesson> findAll();
-    KiteLesson findByType(String type);
-    KiteLesson create(KiteLesson kiteLesson);
-    void update(KiteLesson newKiteLesson, String type);
+    List<KiteLessonDTO> findAll();
+    KiteLessonDTO findByType(String type);
+    KiteLessonDTO create(KiteLessonDTO kiteLessonDTO);
+    void update(KiteLessonDTO newKiteLessonDTO, String type);
     void delete(String type);
 }

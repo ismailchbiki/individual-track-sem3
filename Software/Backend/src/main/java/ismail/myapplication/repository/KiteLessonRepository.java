@@ -1,12 +1,12 @@
 package ismail.myapplication.repository;
 
-import ismail.myapplication.dto.KiteLesson;
+import ismail.myapplication.repository.entity.KiteLesson;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-
-public interface KiteLessonRepository {
-    List<KiteLesson> findAll();
-    KiteLesson create(KiteLesson kiteLesson);
-    void update(KiteLesson newKiteLesson, String type);
-    void delete(String type);
+//This will have all crud methods to operate on the DB
+public interface KiteLessonRepository extends JpaRepository<KiteLesson, Long> {
+    /*List<KiteLessonDTO> findAll();
+    KiteLessonDTO create(KiteLessonDTO kiteLessonDTO);
+    void update(KiteLessonDTO newKiteLessonDTO, String type);
+    void delete(String type);*/
 }
