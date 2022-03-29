@@ -1,7 +1,5 @@
 package ismail.myapplication.controller;
 
-import ismail.myapplication.business.KiteLessonBusiness;
-import ismail.myapplication.dto.KiteLessonDTO;
 import ismail.myapplication.exception.ResourceNotFoundException;
 import ismail.myapplication.repository.KiteLessonRepository;
 import ismail.myapplication.repository.entity.KiteLesson;
@@ -10,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -18,7 +15,6 @@ import java.util.List;
 @RequestMapping("/api/v1/kitelessons")
 @AllArgsConstructor
 public class KiteLessonController {
-
     private KiteLessonRepository kiteLessonRepository;
 
     @GetMapping
@@ -26,12 +22,15 @@ public class KiteLessonController {
         return kiteLessonRepository.findAll();
     }
 
-    /*@GetMapping("/{type}")
+    @GetMapping("/{type}")
     public ResponseEntity<KiteLesson> findByType(@PathVariable String type){
-
-        KiteLesson kiteLesson = kiteLessonRepository.find
-        return kiteLessonRepository.findByType(type);
-    }*/
+        for (KiteLesson kiteLesson : kiteLessonRepository.findAll()) {
+            if (kiteLesson.getType().equals(type)) {
+                return ResponseEntity.ok().body(kiteLesson);
+            }
+        }
+        return ResponseEntity.notFound().build();
+    }
 
     @PostMapping
     public KiteLesson createKiteLesson(@RequestBody /* -> converts json to java object*/ KiteLesson kiteLesson){
