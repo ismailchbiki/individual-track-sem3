@@ -4,6 +4,7 @@ import { HeaderComponent } from "./components/HeaderComponent";
 import { FooterComponent } from "./components/FooterComponent";
 import ErrorComponent from "./components/ErrorComponent";
 import { KiteLessonsListComponent } from "./components/KiteLessonsListComponent";
+import { AddUpdateKiteLessonComponent } from "./components/AddUpdateKiteLessonComponent";
 
 function App() {
   return (
@@ -17,6 +18,14 @@ function App() {
               exact
               path="/api/v1/kite-lessons"
               element={<KiteLessonsListComponent />}
+            />
+            <Route
+              path="/api/v1/add-kite-lesson"
+              element={<AddUpdateKiteLessonComponent />}
+            />
+            <Route
+              path="/api/v1/update-kite-lesson/:id"
+              element={<AddUpdateKiteLessonComponent />}
             />
             <Route path="*" element={<ErrorComponent />} />
           </Routes>

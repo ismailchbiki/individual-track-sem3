@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { GetKiteLessons } from "../services/KiteLessonService";
+import {
+  deleteKiteLesson,
+  GetKiteLessons,
+} from "../services/KiteLessonService";
 
 export const KiteLessonsListComponent = () => {
   const [KiteLessons, setKiteLessons] = useState([]);
@@ -20,7 +23,7 @@ export const KiteLessonsListComponent = () => {
       });
   };
 
-  const deleteKiteLesson = (id) => {
+  const deleteLesson = (id) => {
     deleteKiteLesson(id)
       .then((response) => {
         getAllKiteLessons();
@@ -32,8 +35,14 @@ export const KiteLessonsListComponent = () => {
 
   return (
     <div className="container">
-      <h2 className="text-center">Kite Lessons List</h2>
-      <Link to="/add-kite-lesson" className="btn btn-primary mb-2">
+      <h2 className="text-center" style={{ marginTop: "15px" }}>
+        Kite Lessons List
+      </h2>
+      <Link
+        to="/api/v1/add-kite-lesson"
+        className="btn btn-primary mb-2"
+        style={{ marginbottom: "20px" }}
+      >
         Add Kite Lesson
       </Link>
       <table className="table table-bordered table-striped">
@@ -60,14 +69,14 @@ export const KiteLessonsListComponent = () => {
               <td>
                 <Link
                   className="btn btn-info"
-                  to={`/edit-kite_lesson/${lesson.id}`}
+                  to={`/api/v1/update-kite-lesson/${lesson.id}`}
                 >
                   Update
                 </Link>
                 <button
                   className="btn btn-danger "
                   onClick={() => {
-                    deleteKiteLesson(lesson.id);
+                    deleteLesson(lesson.id);
                   }}
                   style={{ marginLeft: "10px" }}
                 >

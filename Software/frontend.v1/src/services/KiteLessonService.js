@@ -18,6 +18,6 @@ export const updateKiteLesson = (id, kiteLesson) => {
   return axios.put(KITELESSON_BASE_REST_API_URL + "/" + id, kiteLesson);
 };
 
-export const deleteEmployee = (id) => {
+export const deleteKiteLesson = (id) => {
   return axios.delete(KITELESSON_BASE_REST_API_URL + "/" + id);
 };
