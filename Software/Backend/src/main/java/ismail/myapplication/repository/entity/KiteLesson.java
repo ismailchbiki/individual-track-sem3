@@ -1,4 +1,4 @@
-package ismail.myapplication.model;
+package ismail.myapplication.repository.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

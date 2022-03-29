@@ -1,8 +1,7 @@
 package ismail.myapplication.controller;
 
 import ismail.myapplication.business.KiteLessonBusiness;
-import ismail.myapplication.model.KiteLesson;
-import lombok.AllArgsConstructor;
+import ismail.myapplication.dto.KiteLesson;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

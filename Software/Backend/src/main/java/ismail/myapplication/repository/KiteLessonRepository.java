@@ -1,6 +1,6 @@
-package ismail.myapplication.persistence;
+package ismail.myapplication.repository;
 
-import ismail.myapplication.model.KiteLesson;
+import ismail.myapplication.dto.KiteLesson;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package ismail.myapplication.business;
 
-import ismail.myapplication.model.KiteLesson;
+import ismail.myapplication.dto.KiteLesson;
 
 import java.util.List;
 

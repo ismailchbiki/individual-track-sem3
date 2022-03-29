@@ -1,8 +1,8 @@
-package ismail.myapplication.business;
+package ismail.myapplication.business.impl;
 
-import ismail.myapplication.model.KiteLesson;
-import ismail.myapplication.persistence.KiteLessonRepository;
-import lombok.AllArgsConstructor;
+import ismail.myapplication.business.KiteLessonBusiness;
+import ismail.myapplication.dto.KiteLesson;
+import ismail.myapplication.repository.KiteLessonRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
