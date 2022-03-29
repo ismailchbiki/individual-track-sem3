@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import GetKiteLessons from "../services/KiteLessonService";
+import { GetKiteLessons } from "../services/KiteLessonService";
 
 class ListKiteLessonsComponent extends Component {
   constructor(props) {
