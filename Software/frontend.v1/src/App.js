@@ -1,9 +1,9 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import ListKiteLessonsComponent from "./components/ListKiteLessonsComponent";
 import { HeaderComponent } from "./components/HeaderComponent";
 import { FooterComponent } from "./components/FooterComponent";
 import ErrorComponent from "./components/ErrorComponent";
+import { KiteLessonsListComponent } from "./components/KiteLessonsListComponent";
 
 function App() {
   return (
@@ -12,11 +12,11 @@ function App() {
         <HeaderComponent />
         <div className="container">
           <Routes>
-            <Route exact path="/" element={<ListKiteLessonsComponent />} />
+            <Route exact path="/" element={<KiteLessonsListComponent />} />
             <Route
               exact
               path="/api/v1/kite-lessons"
-              element={<ListKiteLessonsComponent />}
+              element={<KiteLessonsListComponent />}
             />
             <Route path="*" element={<ErrorComponent />} />
           </Routes>
