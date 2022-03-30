@@ -1,7 +1,7 @@
 stages:
-  -build
-  -test
-  -analyze
+  - build
+  - test
+  - analyze
 
 build:
   stage: build
@@ -20,9 +20,9 @@ analyze:
   script:
     - cd Software/Backend
     - gradle sonarqube \
-      -Dsonar.projectKey=Individual-Track \
-      -Dsonar.host.url=http://localhost:9000 \
-      -Dsonar.login=f62fc0ab5c799818d2f1e3d5a52778e1591f0cbd
+      - Dsonar.projectKey=Individual-Track \
+      - Dsonar.host.url=http://localhost:9000 \
+      - Dsonar.login=f62fc0ab5c799818d2f1e3d5a52778e1591f0cbd
 
 after_script:
   - echo "End CI"
