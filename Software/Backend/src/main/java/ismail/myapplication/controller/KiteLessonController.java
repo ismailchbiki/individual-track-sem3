@@ -11,10 +11,10 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/api/v1/kitelessons")
+@RequestMapping("/api/v1/kite-lessons")
 @AllArgsConstructor
 public class KiteLessonController {
-    private KiteLessonBusiness kiteLessonBusiness;
+    private final KiteLessonBusiness kiteLessonBusiness;
 
     @GetMapping
     public List<KiteLessonDTO> findAll(){

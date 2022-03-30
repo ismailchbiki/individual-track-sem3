@@ -1,9 +1,6 @@
 package ismail.myapplication.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.NotEmpty;
@@ -13,6 +10,7 @@ import javax.validation.constraints.NotEmpty;
 @Getter
 @Setter
 @Component
+@Builder
 public class KiteLessonDTO {
     @NotEmpty //Validation
     private Long id;
