@@ -9,13 +9,6 @@ class KiteLessonConverter {
 
     //Convert Entity to DTO
     public static KiteLessonDTO convertEntityToDTO(KiteLesson kiteLesson) {
-        /*KiteLessonDTO kiteLessonDTO = new KiteLessonDTO();
-        kiteLessonDTO.setId(kiteLesson.getId());
-        kiteLessonDTO.setType(kiteLesson.getType());
-        kiteLessonDTO.setPersons(kiteLesson.getPersons());
-        kiteLessonDTO.setHours(kiteLesson.getHours());
-        kiteLessonDTO.setPrice(kiteLesson.getPrice());*/
-
         return KiteLessonDTO.builder()
                 .id(kiteLesson.getId())
                 .hours(kiteLesson.getHours())
@@ -26,13 +19,6 @@ class KiteLessonConverter {
 
     //Convert DTO to Entity
     public static KiteLesson convertDTOToEntity(KiteLessonDTO kiteLessonDTO) {
-        /*KiteLesson kiteLesson = new KiteLesson();
-        kiteLesson.setId(kiteLessonDTO.getId());
-        kiteLesson.setType(kiteLessonDTO.getType());
-        kiteLesson.setPersons(kiteLessonDTO.getPersons());
-        kiteLesson.setHours(kiteLessonDTO.getHours());
-        kiteLesson.setPrice(kiteLessonDTO.getPrice());*/
-
         return KiteLesson.builder()
                 .id(kiteLessonDTO.getId())
                 .hours(kiteLessonDTO.getHours())
