@@ -20,7 +20,7 @@ analyze:
   script:
     - cd Software/Backend
     - gradle sonarqube \
-      -Dsonar.projectKey=Individual-Track \
+      -Dsonar.projectKey=Individual-Track-Project \
       -Dsonar.host.url=http://localhost:9000 \
       -Dsonar.login=f62fc0ab5c799818d2f1e3d5a52778e1591f0cbd
 
