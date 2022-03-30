@@ -19,10 +19,7 @@ analyze:
   stage: analyze
   script:
     - cd Software/Backend
-    - gradle sonarqube \
-      -D "sonar.projectKey=Individual-Track-Project" \
-      -D "sonar.host.url=http://localhost:9000" \
-      -D "sonar.login=f62fc0ab5c799818d2f1e3d5a52778e1591f0cbd"
+    - gradle sonarqube -D "sonar.projectKey=Individual-Track-Project" -D "sonar.host.url=http://localhost:9000" -D "sonar.login=f62fc0ab5c799818d2f1e3d5a52778e1591f0cbd"
 
 after_script:
   - echo "End CI"
