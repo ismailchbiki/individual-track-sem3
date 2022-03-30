@@ -9,7 +9,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -22,7 +21,7 @@ public class KiteLessonBusinessImpl implements KiteLessonBusiness {
         return kiteLessonRepository.findAll()
                 .stream()
                 .map(KiteLessonConverter::convertEntityToDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
@@ -45,8 +44,8 @@ public class KiteLessonBusinessImpl implements KiteLessonBusiness {
 
     @Override
     public KiteLessonDTO createKiteLesson(KiteLessonDTO kiteLessonDTO) {
-        KiteLesson KiteLesson = kiteLessonRepository.save(KiteLessonConverter.convertDTOToEntity(kiteLessonDTO));
-        return KiteLessonConverter.convertEntityToDTO(KiteLesson);
+        KiteLesson kiteLesson = kiteLessonRepository.save(KiteLessonConverter.convertDTOToEntity(kiteLessonDTO));
+        return KiteLessonConverter.convertEntityToDTO(kiteLesson);
     }
 
     @Override

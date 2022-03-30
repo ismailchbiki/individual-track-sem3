@@ -1,6 +1,5 @@
 build:
   stage: build
-    
   script:
     - cd Software/Backend
     - gradle build -x test
@@ -11,10 +10,7 @@ test:
     - cd Software/Backend
     - gradle test
 
-sonar:
-  stage: sonar
-  script:
-    - cd Software/Backend
+    - echo "Test Using SonarQube"
     - gradle sonarqube \
       -Dsonar.projectKey=Individual-Track \
       -Dsonar.host.url=http://localhost:9000 \

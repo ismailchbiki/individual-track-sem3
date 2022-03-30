@@ -3,7 +3,7 @@ package ismail.myapplication.business.impl;
 import ismail.myapplication.dto.KiteLessonDTO;
 import ismail.myapplication.repository.entity.KiteLesson;
 
-public class KiteLessonConverter {
+class KiteLessonConverter {
     public static KiteLessonDTO convertEntityToDTO(KiteLesson kiteLesson) {
         KiteLessonDTO kiteLessonDTO = new KiteLessonDTO();
         kiteLessonDTO.setId(kiteLesson.getId());
