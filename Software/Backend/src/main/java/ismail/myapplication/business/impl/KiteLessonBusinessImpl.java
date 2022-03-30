@@ -8,8 +8,6 @@ import ismail.myapplication.repository.entity.KiteLesson;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 @AllArgsConstructor
 public class KiteLessonBusinessImpl implements KiteLessonBusiness {
@@ -17,35 +15,9 @@ public class KiteLessonBusinessImpl implements KiteLessonBusiness {
     private KiteLessonRepository kiteLessonRepository;
 
     @Override
-    public List<KiteLessonDTO> findAllKiteLessons(){
-        return kiteLessonRepository.findAll()
-                .stream()
-                .map(KiteLessonConverter::convertEntityToDTO)
-                .toList();
-    }
-
-    @Override
-    public KiteLessonDTO findKiteLessonById(long id){
-        KiteLesson kiteLesson = kiteLessonRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Kite Lesson is not found with Id: " + id));
-
-        return KiteLessonConverter.convertEntityToDTO(kiteLesson);
-    }
-
-    @Override
-    public KiteLessonDTO findKiteLessonByType(String type){
-        for (KiteLessonDTO kiteLessonDTO : findAllKiteLessons()) {
-            if (kiteLessonDTO.getType().equals(type)) {
-                return kiteLessonDTO;
-            }
-        }
-        return null;
-    }
-
-    @Override
     public KiteLessonDTO createKiteLesson(KiteLessonDTO kiteLessonDTO) {
-        KiteLesson kiteLesson = kiteLessonRepository.save(KiteLessonConverter.convertDTOToEntity(kiteLessonDTO));
-        return KiteLessonConverter.convertEntityToDTO(kiteLesson);
+        KiteLesson kiteLesson = kiteLessonRepository.save(KiteLessonDTOConverter.convertDTOToEntity(kiteLessonDTO));
+        return KiteLessonDTOConverter.convertEntityToDTO(kiteLesson);
     }
 
     @Override
@@ -61,7 +33,7 @@ public class KiteLessonBusinessImpl implements KiteLessonBusiness {
 
         kiteLessonRepository.save(existingKiteLesson);
 
-        return KiteLessonConverter.convertEntityToDTO(existingKiteLesson);
+        return KiteLessonDTOConverter.convertEntityToDTO(existingKiteLesson);
     }
 
     @Override
