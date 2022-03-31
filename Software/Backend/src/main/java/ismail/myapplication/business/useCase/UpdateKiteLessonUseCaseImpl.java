@@ -1,6 +1,6 @@
-package ismail.myapplication.business.impl;
+package ismail.myapplication.business.useCase;
 
-import ismail.myapplication.business.KiteLessonBusiness;
+import ismail.myapplication.business.impl.KiteLessonDTOConverter;
 import ismail.myapplication.dto.KiteLessonDTO;
 import ismail.myapplication.exception.ResourceNotFoundException;
 import ismail.myapplication.repository.KiteLessonRepository;
@@ -10,15 +10,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class KiteLessonBusinessImpl implements KiteLessonBusiness {
+public class UpdateKiteLessonUseCaseImpl implements UpdateKiteLessonUseCase {
 
     private KiteLessonRepository kiteLessonRepository;
-
-    @Override
-    public KiteLessonDTO createKiteLesson(KiteLessonDTO kiteLessonDTO) {
-        KiteLesson kiteLesson = kiteLessonRepository.save(KiteLessonDTOConverter.convertDTOToEntity(kiteLessonDTO));
-        return KiteLessonDTOConverter.convertEntityToDTO(kiteLesson);
-    }
 
     @Override
     public KiteLessonDTO updateKiteLesson(long id, KiteLessonDTO newKiteLessonDTO) {
@@ -34,13 +28,5 @@ public class KiteLessonBusinessImpl implements KiteLessonBusiness {
         kiteLessonRepository.save(existingKiteLesson);
 
         return KiteLessonDTOConverter.convertEntityToDTO(existingKiteLesson);
-    }
-
-    @Override
-    public void
-    deleteKiteLesson(long id) {
-        KiteLesson existingKiteLesson = kiteLessonRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Kite lesson with this id:" + id + " doesn't exist."));
-        kiteLessonRepository.delete(existingKiteLesson);
     }
 }

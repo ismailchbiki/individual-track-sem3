@@ -1,6 +1,7 @@
 package ismail.myapplication.business.impl;
 
-import ismail.myapplication.business.GetKiteLessonUseCase;
+import ismail.myapplication.business.useCase.GetKiteLessonUseCase;
+import ismail.myapplication.dto.GetKiteLessonsDTO;
 import ismail.myapplication.dto.KiteLessonDTO;
 import ismail.myapplication.exception.ResourceNotFoundException;
 import ismail.myapplication.repository.KiteLessonRepository;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 public class GetKiteLessonUseCaseImpl implements GetKiteLessonUseCase {
 
     private KiteLessonRepository kiteLessonRepository;
+
     @Override
     public KiteLessonDTO getKiteLessonById(long lessonId) {
         KiteLesson kiteLesson = kiteLessonRepository.findById(lessonId)
@@ -31,5 +33,15 @@ public class GetKiteLessonUseCaseImpl implements GetKiteLessonUseCase {
             }
         }
         return null;
+    }
+
+    @Override
+    public GetKiteLessonsDTO GetKiteLessons(){
+
+        return GetKiteLessonsDTO.builder()
+                .getKiteLessons(kiteLessonRepository.findAll()
+                        .stream()
+                        .map(KiteLessonDTOConverter::convertEntityToDTO)
+                        .toList()).build();
     }
 }
