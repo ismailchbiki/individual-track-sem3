@@ -4,12 +4,13 @@ import ismail.myapplication.business.useCase.CreateKiteLessonUseCase;
 import ismail.myapplication.business.useCase.DeleteKiteLessonUseCase;
 import ismail.myapplication.business.useCase.GetKiteLessonUseCase;
 import ismail.myapplication.business.useCase.UpdateKiteLessonUseCase;
-import ismail.myapplication.dto.GetKiteLessonsDTO;
 import ismail.myapplication.dto.KiteLessonDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -22,8 +23,8 @@ public class KiteLessonController {
     private final GetKiteLessonUseCase getKiteLessonUseCase;
 
     @GetMapping
-    public ResponseEntity<GetKiteLessonsDTO> getAllKiteLessons(){
-        return ResponseEntity.ok(getKiteLessonUseCase.GetKiteLessons());
+    public List<KiteLessonDTO> getAllKiteLessons(){
+        return getKiteLessonUseCase.GetKiteLessons();
     }
 
     //Get Kite Lesson by ID
