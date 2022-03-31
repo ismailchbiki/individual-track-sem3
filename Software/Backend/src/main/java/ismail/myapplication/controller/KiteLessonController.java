@@ -24,7 +24,7 @@ public class KiteLessonController {
 
     @GetMapping
     public List<KiteLessonDTO> getAllKiteLessons(){
-        return getKiteLessonUseCase.GetKiteLessonsDTO();
+        return getKiteLessonUseCase.getKiteLessonsDTO();
     }
 
     //Get Kite Lesson by ID

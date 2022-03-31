@@ -7,5 +7,5 @@ import java.util.List;
 public interface GetKiteLessonUseCase {
     KiteLessonDTO getKiteLessonById(long lessonId);
     KiteLessonDTO getKiteLessonByType(String lessonType);
-    List<KiteLessonDTO> GetKiteLessonsDTO();
+    List<KiteLessonDTO> getKiteLessonsDTO();
 }

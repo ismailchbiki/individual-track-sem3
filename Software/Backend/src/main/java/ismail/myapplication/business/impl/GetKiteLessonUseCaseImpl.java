@@ -39,7 +39,7 @@ public class GetKiteLessonUseCaseImpl implements GetKiteLessonUseCase {
     }
 
     @Override
-    public List<KiteLessonDTO> GetKiteLessonsDTO(){
+    public List<KiteLessonDTO> getKiteLessonsDTO(){
         List<KiteLesson> kiteLessons = kiteLessonRepository.findAll();
 
         ModelMapper mapper = new ModelMapper();
