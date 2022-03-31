@@ -1,9 +1,9 @@
 package ismail.myapplication.controller;
 
-import ismail.myapplication.business.useCase.CreateKiteLessonUseCase;
-import ismail.myapplication.business.useCase.DeleteKiteLessonUseCase;
-import ismail.myapplication.business.useCase.GetKiteLessonUseCase;
-import ismail.myapplication.business.useCase.UpdateKiteLessonUseCase;
+import ismail.myapplication.business.CreateKiteLessonUseCase;
+import ismail.myapplication.business.DeleteKiteLessonUseCase;
+import ismail.myapplication.business.GetKiteLessonUseCase;
+import ismail.myapplication.business.UpdateKiteLessonUseCase;
 import ismail.myapplication.dto.KiteLessonDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,7 +24,7 @@ public class KiteLessonController {
 
     @GetMapping
     public List<KiteLessonDTO> getAllKiteLessons(){
-        return getKiteLessonUseCase.GetKiteLessons();
+        return getKiteLessonUseCase.GetKiteLessonsDTO();
     }
 
     //Get Kite Lesson by ID

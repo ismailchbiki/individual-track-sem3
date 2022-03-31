@@ -1,6 +1,6 @@
-package ismail.myapplication.business.useCase;
+package ismail.myapplication.business.impl;
 
-import ismail.myapplication.business.impl.KiteLessonDTOConverter;
+import ismail.myapplication.business.UpdateKiteLessonUseCase;
 import ismail.myapplication.dto.KiteLessonDTO;
 import ismail.myapplication.exception.ResourceNotFoundException;
 import ismail.myapplication.repository.KiteLessonRepository;

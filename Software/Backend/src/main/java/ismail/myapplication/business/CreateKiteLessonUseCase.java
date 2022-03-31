@@ -1,4 +1,4 @@
-package ismail.myapplication.business.useCase;
+package ismail.myapplication.business;
 
 import ismail.myapplication.dto.KiteLessonDTO;
 

@@ -1,6 +1,6 @@
 package ismail.myapplication.business.impl;
 
-import ismail.myapplication.business.useCase.DeleteKiteLessonUseCase;
+import ismail.myapplication.business.DeleteKiteLessonUseCase;
 import ismail.myapplication.exception.ResourceNotFoundException;
 import ismail.myapplication.repository.KiteLessonRepository;
 import ismail.myapplication.repository.entity.KiteLesson;

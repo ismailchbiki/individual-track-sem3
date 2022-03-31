@@ -1,6 +1,6 @@
 package ismail.myapplication.business.impl;
 
-import ismail.myapplication.business.useCase.CreateKiteLessonUseCase;
+import ismail.myapplication.business.CreateKiteLessonUseCase;
 import ismail.myapplication.dto.KiteLessonDTO;
 import ismail.myapplication.repository.KiteLessonRepository;
 import ismail.myapplication.repository.entity.KiteLesson;

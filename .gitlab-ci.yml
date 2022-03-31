@@ -1,7 +1,7 @@
 stages:
   - build
   - test
-  - analyze
+  - sonar
 
 build:
   stage: build
@@ -15,8 +15,8 @@ test:
     - cd Software/Backend
     - gradle test
 
-analyze:
-  stage: analyze
+sonar:
+  stage: sonar
   script:
     - cd Software/Backend
     - gradle sonarqube -D "sonar.projectKey=Individual-Track-Project" -D "sonar.host.url=http://localhost:9000" -D "sonar.login=f62fc0ab5c799818d2f1e3d5a52778e1591f0cbd"

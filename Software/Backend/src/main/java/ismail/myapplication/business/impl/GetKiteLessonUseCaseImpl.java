@@ -1,6 +1,6 @@
 package ismail.myapplication.business.impl;
 
-import ismail.myapplication.business.useCase.GetKiteLessonUseCase;
+import ismail.myapplication.business.GetKiteLessonUseCase;
 import ismail.myapplication.dto.KiteLessonDTO;
 import ismail.myapplication.exception.ResourceNotFoundException;
 import ismail.myapplication.repository.KiteLessonRepository;
@@ -39,7 +39,7 @@ public class GetKiteLessonUseCaseImpl implements GetKiteLessonUseCase {
     }
 
     @Override
-    public List<KiteLessonDTO> GetKiteLessons(){
+    public List<KiteLessonDTO> GetKiteLessonsDTO(){
         List<KiteLesson> kiteLessons = kiteLessonRepository.findAll();
 
         ModelMapper mapper = new ModelMapper();
