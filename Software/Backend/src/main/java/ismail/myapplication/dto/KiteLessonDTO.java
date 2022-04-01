@@ -10,7 +10,7 @@ import javax.validation.constraints.NotEmpty;
 @Setter
 @Builder
 public class KiteLessonDTO {
-    @NotEmpty //Validation
+    @NotEmpty
     private Long id;
     private String type;
     private Double hours;

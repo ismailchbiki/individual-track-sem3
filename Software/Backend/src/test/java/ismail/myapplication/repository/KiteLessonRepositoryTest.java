@@ -1,36 +1,55 @@
-/*
 package ismail.myapplication.repository;
 
-import ismail.myapplication.AbstractContainerBaseTest;
 import ismail.myapplication.repository.entity.KiteLesson;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import javax.persistence.EntityManager;
+import java.util.Optional;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+@ExtendWith(SpringExtension.class)
 @DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE) // disable in-memory database support
-class KiteLessonRepositoryTest extends AbstractContainerBaseTest {
+class KiteLessonRepositoryTest {
+
+    @Autowired
+    private EntityManager entityManager;
 
     @Autowired
     private KiteLessonRepository kiteLessonRepository;
 
     @Test
-    public void givenKiteLessonObject_whenSave_thenReturnSavedObject() {
-        //Arrange
-        KiteLesson kiteLesson = KiteLesson.builder()
-                .id(200L)
-                .price(150.0)
-                .persons(1)
-                .type("test-lesson")
-                .hours(2.0).build();
-        //Act
-        KiteLesson savedKiteLesson = kiteLessonRepository.save(kiteLesson);
+    void findById_shouldReturnKiteLesson_whenItExists() {
 
-        //Assert
-        Assertions.assertNotNull(savedKiteLesson);
-        Assertions.assertNotNull(savedKiteLesson.getId());
+        // given
+        KiteLesson actualKiteLesson = KiteLesson.builder()
+                .id(35L)
+                .hours(2D)
+                .persons(2)
+                .price(100D)
+                .type("testkitelesson")
+                .build();
+        assertNotNull(actualKiteLesson);
+        kiteLessonRepository.save(actualKiteLesson);
+        // when
+        //KiteLesson expectedKiteLesson = kiteLessonRepository.findById(35L);
+
+        // then
+        /*KiteLesson expectedKiteLesson = KiteLesson.builder()
+                .id(35L)
+                .hours(2D)
+                .persons(2)
+                .price(100D)
+                .type("testkitelesson")
+                .build();*/
+    /*    assertThat(actualKiteLesson)
+                .usingRecursiveComparison()
+                .ignoringExpectedNullFields()
+                .isEqualTo(expectedKiteLesson);*/
     }
-}*/
+}

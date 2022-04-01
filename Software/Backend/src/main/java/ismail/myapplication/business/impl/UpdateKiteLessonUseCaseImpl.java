@@ -5,14 +5,14 @@ import ismail.myapplication.dto.KiteLessonDTO;
 import ismail.myapplication.exception.ResourceNotFoundException;
 import ismail.myapplication.repository.KiteLessonRepository;
 import ismail.myapplication.repository.entity.KiteLesson;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UpdateKiteLessonUseCaseImpl implements UpdateKiteLessonUseCase {
 
-    private KiteLessonRepository kiteLessonRepository;
+    private final KiteLessonRepository kiteLessonRepository;
 
     @Override
     public KiteLessonDTO updateKiteLesson(long id, KiteLessonDTO newKiteLessonDTO) {

@@ -4,14 +4,14 @@ import ismail.myapplication.business.DeleteKiteLessonUseCase;
 import ismail.myapplication.exception.ResourceNotFoundException;
 import ismail.myapplication.repository.KiteLessonRepository;
 import ismail.myapplication.repository.entity.KiteLesson;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class DeleteKiteLessonUseCaseImpl implements DeleteKiteLessonUseCase {
 
-    private KiteLessonRepository kiteLessonRepository;
+    private final KiteLessonRepository kiteLessonRepository;
 
     @Override
     public void deleteKiteLesson(long id) {

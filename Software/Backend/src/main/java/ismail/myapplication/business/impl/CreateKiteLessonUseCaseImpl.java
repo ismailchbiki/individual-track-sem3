@@ -4,15 +4,14 @@ import ismail.myapplication.business.CreateKiteLessonUseCase;
 import ismail.myapplication.dto.KiteLessonDTO;
 import ismail.myapplication.repository.KiteLessonRepository;
 import ismail.myapplication.repository.entity.KiteLesson;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class CreateKiteLessonUseCaseImpl implements CreateKiteLessonUseCase {
 
-    private KiteLessonRepository kiteLessonRepository;
+    private final KiteLessonRepository kiteLessonRepository;
 
     @Override
     public KiteLessonDTO createKiteLesson(KiteLessonDTO kiteLessonDTO) {
