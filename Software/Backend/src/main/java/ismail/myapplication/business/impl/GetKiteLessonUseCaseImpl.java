@@ -6,11 +6,7 @@ import ismail.myapplication.exception.ResourceNotFoundException;
 import ismail.myapplication.repository.KiteLessonRepository;
 import ismail.myapplication.repository.entity.KiteLesson;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-
-import java.util.Arrays;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -36,14 +32,5 @@ public class GetKiteLessonUseCaseImpl implements GetKiteLessonUseCase {
             }
         }
         return null;
-    }
-
-    @Override
-    public List<KiteLessonDTO> getKiteLessonsDTO(){
-
-        List<KiteLesson> kiteLessons = kiteLessonRepository.findAll();
-
-        ModelMapper mapper = new ModelMapper();
-        return Arrays.asList(mapper.map(kiteLessons, KiteLessonDTO[].class));
     }
 }
