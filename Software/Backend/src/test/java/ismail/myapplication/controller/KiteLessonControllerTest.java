@@ -38,7 +38,7 @@ class KiteLessonControllerTest {
     @MockBean
     private GetAllKiteLessonsUseCase getAllKiteLessonsUseCase;
 
-/*    @Test
+   /* @Test
     void createKiteLesson() throws Exception {
         KiteLessonDTO expectedRequest = KiteLessonDTO.builder()
                 .type("test-type")
@@ -50,6 +50,10 @@ class KiteLessonControllerTest {
         when(createKiteLessonUseCase.createKiteLesson(expectedRequest))
                 .thenReturn(KiteLessonDTO.builder()
                         .id(25L)
+                        .type("test-type")
+                        .hours(2D)
+                        .persons(2)
+                        .price(150D)
                         .build());
 
         mockMvc.perform(post("/api/v1/kite-lessons")
@@ -95,14 +99,14 @@ class KiteLessonControllerTest {
     }
 
     @Test
-    void getKiteLesson_shouldReturn404Error_whenKiteLessonNotFound() throws Exception {
-        when(getKiteLessonUseCase.getKiteLessonById(10L)).thenReturn(null);
+    void getKiteLesson_shouldReturn200Success_whenKiteLessonFound() throws Exception {
+        /*when(getKiteLessonUseCase.getKiteLessonById(155L)).thenReturn(null);*/
 
-        mockMvc.perform(get("/api/v1/kite-lessons/10"))
+        mockMvc.perform(get("/api/v1/kite-lessons/1555"))
                 .andDo(print())
-                .andExpect(status().isNotFound());
+                .andExpect(status().isOk());
 
-        verify(getKiteLessonUseCase).getKiteLessonById(10L);
+        verify(getKiteLessonUseCase).getKiteLessonById(1555L);
     }
 }
 

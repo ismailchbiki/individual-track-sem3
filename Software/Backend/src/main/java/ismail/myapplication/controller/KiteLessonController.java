@@ -47,8 +47,9 @@ public class KiteLessonController {
 
     //create kite lesson
     @PostMapping
-    public KiteLessonDTO createKiteLesson(@RequestBody /* -> converts json to java object*/ KiteLessonDTO kiteLessonDTO){
-        return createKiteLessonUseCase.createKiteLesson(kiteLessonDTO);
+    public ResponseEntity<KiteLessonDTO> createKiteLesson(@RequestBody /* -> converts json to java object*/ KiteLessonDTO kiteLessonDTO){
+        KiteLessonDTO response = createKiteLessonUseCase.createKiteLesson(kiteLessonDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     //update kite lesson
