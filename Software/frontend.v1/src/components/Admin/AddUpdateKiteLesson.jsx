@@ -33,7 +33,6 @@ export const AddUpdateKiteLesson = () => {
       createKiteLesson(kiteLesson)
         .then((response) => {
           console.log(response.data);
-
           navigate("/api/v1/kite-lessons");
         })
         .catch((error) => {

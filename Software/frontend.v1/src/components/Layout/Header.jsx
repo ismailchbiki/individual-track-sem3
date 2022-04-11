@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 const Header = () => {
   const [active, setActive] = useState("nav__menu");
   const [icon, setIcon] = useState("nav__toggler");
-  const navigate = useNavigate();
 
   const navToggle = () => {
     if (active === "nav__menu") {
