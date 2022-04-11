@@ -1,39 +1,39 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { HeaderComponent } from "./components/HeaderComponent";
-import { FooterComponent } from "./components/FooterComponent";
-import ErrorComponent from "./components/ErrorComponent";
-import { KiteLessonsListComponent } from "./components/KiteLessonsListComponent";
-import { AddUpdateKiteLessonComponent } from "./components/AddUpdateKiteLessonComponent";
+import { Header } from "./components/Layout/Header";
+import { Footer } from "./components/Layout/Footer";
+import Error from "./components/ErrorHandling/Error";
+import { KiteLessonsList } from "./components/Managing/KiteLessonsList";
+import { AddUpdateKiteLesson } from "./components/Managing/AddUpdateKiteLesson";
 
-function App() {
+const App = () => {
   return (
     <div>
       <Router>
-        <HeaderComponent />
+        <Header />
         <div className="container">
           <Routes>
-            <Route exact path="/" element={<KiteLessonsListComponent />} />
+            <Route exact path="/" element={<KiteLessonsList />} />
             <Route
               exact
               path="/api/v1/kite-lessons"
-              element={<KiteLessonsListComponent />}
+              element={<KiteLessonsList />}
             />
             <Route
               path="/api/v1/add-kite-lesson"
-              element={<AddUpdateKiteLessonComponent />}
+              element={<AddUpdateKiteLesson />}
             />
             <Route
               path="/api/v1/update-kite-lesson/:id"
-              element={<AddUpdateKiteLessonComponent />}
+              element={<AddUpdateKiteLesson />}
             />
-            <Route path="*" element={<ErrorComponent />} />
+            <Route path="*" element={<Error />} />
           </Routes>
         </div>
-        <FooterComponent />
+        <Footer />
       </Router>
     </div>
   );
-}
+};
 
 export default App;
