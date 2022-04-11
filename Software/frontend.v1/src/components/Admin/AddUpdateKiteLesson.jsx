@@ -137,7 +137,7 @@ export const AddUpdateKiteLesson = () => {
                 </button> */}
 
                 {/* same as previous code */}
-                <Link to="/" className="btn btn-danger m-2">
+                <Link to="/api/v1/kite-lessons" className="btn btn-danger m-2">
                   Cancel
                 </Link>
               </form>

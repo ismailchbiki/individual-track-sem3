@@ -1,21 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import "./Navbar.css";
 
-export const Header = () => {
+const Header = () => {
+  const [active, setActive] = useState("nav__menu");
+  const [icon, setIcon] = useState("nav__toggler");
+  const navigate = useNavigate();
+
+  const navToggle = () => {
+    if (active === "nav__menu") {
+      setActive("nav__menu nav__active");
+    } else setActive("nav__menu");
+
+    // Icon Toggler
+    if (icon === "nav__toggler") {
+      setIcon("nav__toggler toggle");
+    } else setIcon("nav__toggler");
+  };
   return (
-    <div>
-      <header>
-        <nav className="navbar navbar-expand-md navbar-dark bg-dark">
-          <div>
-            <a
-              href="https://git.fhict.nl/I479364"
-              className="navbar-brand"
-              style={{ marginLeft: "20px" }}
-            >
-              Kitesurf Experience
-            </a>
-          </div>
-        </nav>
-      </header>
-    </div>
+    <nav className="nav">
+      <Link to="/">Kitesurf experience</Link>
+
+      <ul className={active}>
+        <Link to="/">Home</Link>
+
+        <Link to="/api/v1/book">Book</Link>
+        <Link to="/api/v1/kite-lessons">Admin</Link>
+
+        <Link to="/">About</Link>
+        <Link to="/">Contact</Link>
+      </ul>
+      <div onClick={navToggle} className={icon}>
+        <div className="line1"></div>
+        <div className="line2"></div>
+        <div className="line3"></div>
+      </div>
+    </nav>
   );
 };
+
+export default Header;
