@@ -58,6 +58,14 @@ const BasicForm = () => {
         )}
       />
 
+      <div className="container p-2">
+        <select className="form-select form-select-lg mb-2" name="" id="">
+          <option value="">Private</option>
+          <option value="">Semi private</option>
+          <option value="">Group</option>
+        </select>
+      </div>
+
       <Controller
         control={control}
         name="lastName"
