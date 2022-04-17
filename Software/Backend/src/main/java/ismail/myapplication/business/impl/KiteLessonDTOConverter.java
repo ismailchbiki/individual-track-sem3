@@ -2,13 +2,13 @@ package ismail.myapplication.business.impl;
 
 import ismail.myapplication.dto.KiteLessonDTO;
 import ismail.myapplication.repository.entity.KiteLesson;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 public class KiteLessonDTOConverter {
-    private KiteLessonDTOConverter() {
-    }
 
-    //Convert Entity to DTO
     public static KiteLessonDTO convertEntityToDTO(KiteLesson kiteLesson) {
+
         return KiteLessonDTO.builder()
                 .id(kiteLesson.getId())
                 .hours(kiteLesson.getHours())
@@ -17,8 +17,8 @@ public class KiteLessonDTOConverter {
                 .type(kiteLesson.getType()).build();
     }
 
-    //Convert DTO to Entity
     public static KiteLesson convertDTOToEntity(KiteLessonDTO kiteLessonDTO) {
+
         return KiteLesson.builder()
                 .id(kiteLessonDTO.getId())
                 .hours(kiteLessonDTO.getHours())

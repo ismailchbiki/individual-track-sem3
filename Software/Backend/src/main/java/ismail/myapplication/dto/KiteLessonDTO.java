@@ -2,15 +2,12 @@ package ismail.myapplication.dto;
 
 import lombok.*;
 
-import javax.validation.constraints.NotEmpty;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Builder
 public class KiteLessonDTO {
-    @NotEmpty
     private Long id;
     private String type;
     private Double hours;

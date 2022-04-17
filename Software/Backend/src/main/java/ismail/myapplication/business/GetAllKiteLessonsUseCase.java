@@ -1,9 +1,7 @@
 package ismail.myapplication.business;
 
-import ismail.myapplication.dto.KiteLessonDTO;
-
-import java.util.List;
+import ismail.myapplication.dto.GetAllKiteLessonsResponseDTO;
 
 public interface GetAllKiteLessonsUseCase {
-    List<KiteLessonDTO> getKiteLessonsDTO();
+    GetAllKiteLessonsResponseDTO getKiteLessons();
 }

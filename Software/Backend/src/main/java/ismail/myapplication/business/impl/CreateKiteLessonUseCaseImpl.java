@@ -1,11 +1,16 @@
 package ismail.myapplication.business.impl;
 
 import ismail.myapplication.business.CreateKiteLessonUseCase;
+import ismail.myapplication.dto.CreateKiteLessonRequestDTO;
+import ismail.myapplication.dto.CreateKiteLessonResponseDTO;
+import ismail.myapplication.dto.GetAllKiteLessonsResponseDTO;
 import ismail.myapplication.dto.KiteLessonDTO;
 import ismail.myapplication.repository.KiteLessonRepository;
 import ismail.myapplication.repository.entity.KiteLesson;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -13,9 +18,21 @@ public class CreateKiteLessonUseCaseImpl implements CreateKiteLessonUseCase {
 
     private final KiteLessonRepository kiteLessonRepository;
 
+    @Transactional
     @Override
-    public KiteLessonDTO createKiteLesson(KiteLessonDTO kiteLessonDTO) {
-        KiteLesson kiteLesson = kiteLessonRepository.save(KiteLessonDTOConverter.convertDTOToEntity(kiteLessonDTO));
-        return KiteLessonDTOConverter.convertEntityToDTO(kiteLesson);
+    public CreateKiteLessonResponseDTO createKiteLesson(CreateKiteLessonRequestDTO request) {
+
+        KiteLesson kiteLesson = KiteLesson.builder()
+                .type(request.getType())
+                .hours(request.getHours())
+                .persons(request.getPersons())
+                .price(request.getPrice())
+                .build();
+
+        KiteLesson savedKiteLesson = kiteLessonRepository.save(kiteLesson);
+
+        return CreateKiteLessonResponseDTO.builder()
+                .kiteLessonId(savedKiteLesson.getId())
+                .build();
     }
 }

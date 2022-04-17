@@ -1,13 +1,14 @@
 package ismail.myapplication.controller;
 
 import ismail.myapplication.business.*;
+import ismail.myapplication.dto.CreateKiteLessonRequestDTO;
+import ismail.myapplication.dto.CreateKiteLessonResponseDTO;
+import ismail.myapplication.dto.GetAllKiteLessonsResponseDTO;
 import ismail.myapplication.dto.KiteLessonDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -22,8 +23,8 @@ public class KiteLessonController {
     private final GetAllKiteLessonsUseCase getAllKiteLessonsUseCase;
 
     @GetMapping
-    public ResponseEntity<List<KiteLessonDTO>> getAllKiteLessons(){
-        return new ResponseEntity(getAllKiteLessonsUseCase.getKiteLessonsDTO(), HttpStatus.OK);
+    public ResponseEntity<GetAllKiteLessonsResponseDTO> getAllKiteLessons(){
+        return new ResponseEntity(getAllKiteLessonsUseCase.getKiteLessons(), HttpStatus.OK);
     }
 
     //Get Kite Lesson by ID
@@ -47,8 +48,8 @@ public class KiteLessonController {
 
     //create kite lesson
     @PostMapping
-    public ResponseEntity<KiteLessonDTO> createKiteLesson(@RequestBody /* -> converts json to java object*/ KiteLessonDTO kiteLessonDTO){
-        KiteLessonDTO response = createKiteLessonUseCase.createKiteLesson(kiteLessonDTO);
+    public ResponseEntity<CreateKiteLessonResponseDTO> createKiteLesson(@RequestBody /* -> converts json to java object*/ CreateKiteLessonRequestDTO createRequestDTO){
+        CreateKiteLessonResponseDTO response = createKiteLessonUseCase.createKiteLesson(createRequestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
