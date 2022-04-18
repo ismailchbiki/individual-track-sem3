@@ -15,8 +15,8 @@ export const KiteLessonsList = () => {
   const getAllKiteLessons = () => {
     GetKiteLessons()
       .then((response) => {
-        setKiteLessons(response.data);
-        console.log(response.data);
+        setKiteLessons(response.data.kiteLessons);
+        console.log(response.data.kiteLessons);
       })
       .catch((error) => {
         console.log(error);
@@ -59,32 +59,35 @@ export const KiteLessonsList = () => {
         {/* Columns' data */}
         {/* Fields name must have the same names as the Json response from the backend */}
         <tbody>
-          {KiteLessons.map((lesson) => (
-            <tr key={lesson.id}>
-              <td>{lesson.id}</td>
-              <td>{lesson.type}</td>
-              <td>{lesson.persons}</td>
-              <td>{lesson.hours}</td>
-              <td>{lesson.price}</td>
-              <td>
-                <Link
-                  className="btn btn-info"
-                  to={`/api/v1/update-kite-lesson/${lesson.id}`}
-                >
-                  Update
-                </Link>
-                <button
-                  className="btn btn-danger "
-                  onClick={() => {
-                    deleteLesson(lesson.id);
-                  }}
-                  style={{ marginLeft: "10px" }}
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
+          {KiteLessons && console.log(KiteLessons.length)}
+          {KiteLessons.length >= 1
+            ? KiteLessons.map((lesson) => (
+                <tr key={lesson.id}>
+                  <td>{lesson.id}</td>
+                  <td>{lesson.type}</td>
+                  <td>{lesson.persons}</td>
+                  <td>{lesson.hours}</td>
+                  <td>{lesson.price}</td>
+                  <td>
+                    <Link
+                      className="btn btn-info"
+                      to={`/api/v1/update-kite-lesson/${lesson.id}`}
+                    >
+                      Update
+                    </Link>
+                    <button
+                      className="btn btn-danger "
+                      onClick={() => {
+                        deleteLesson(lesson.id);
+                      }}
+                      style={{ marginLeft: "10px" }}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))
+            : ""}
         </tbody>
       </table>
     </div>
