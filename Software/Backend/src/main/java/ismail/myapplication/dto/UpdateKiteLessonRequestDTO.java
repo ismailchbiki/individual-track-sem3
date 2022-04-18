@@ -9,12 +9,14 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Positive;
 
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateKiteLessonRequestDTO {
+public class UpdateKiteLessonRequestDTO {
 
+    private Long id;
     @NotEmpty
     @Length(max = 20)
     @Length(min = 2)

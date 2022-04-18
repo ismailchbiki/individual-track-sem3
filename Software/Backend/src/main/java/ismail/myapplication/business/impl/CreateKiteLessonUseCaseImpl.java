@@ -3,8 +3,6 @@ package ismail.myapplication.business.impl;
 import ismail.myapplication.business.CreateKiteLessonUseCase;
 import ismail.myapplication.dto.CreateKiteLessonRequestDTO;
 import ismail.myapplication.dto.CreateKiteLessonResponseDTO;
-import ismail.myapplication.dto.GetAllKiteLessonsResponseDTO;
-import ismail.myapplication.dto.KiteLessonDTO;
 import ismail.myapplication.repository.KiteLessonRepository;
 import ismail.myapplication.repository.entity.KiteLesson;
 import lombok.RequiredArgsConstructor;

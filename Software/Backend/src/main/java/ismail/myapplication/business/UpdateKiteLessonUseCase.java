@@ -1,7 +1,7 @@
 package ismail.myapplication.business;
 
-import ismail.myapplication.dto.KiteLessonDTO;
+import ismail.myapplication.dto.UpdateKiteLessonRequestDTO;
 
 public interface UpdateKiteLessonUseCase {
-    KiteLessonDTO updateKiteLesson(long id, KiteLessonDTO newKiteLessonDTO);
+    void updateKiteLesson(UpdateKiteLessonRequestDTO request);
 }

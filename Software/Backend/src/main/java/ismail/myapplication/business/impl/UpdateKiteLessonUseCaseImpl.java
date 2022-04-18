@@ -1,12 +1,15 @@
 package ismail.myapplication.business.impl;
 
 import ismail.myapplication.business.UpdateKiteLessonUseCase;
-import ismail.myapplication.dto.KiteLessonDTO;
+import ismail.myapplication.dto.UpdateKiteLessonRequestDTO;
 import ismail.myapplication.exception.ResourceNotFoundException;
 import ismail.myapplication.repository.KiteLessonRepository;
 import ismail.myapplication.repository.entity.KiteLesson;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -14,19 +17,26 @@ public class UpdateKiteLessonUseCaseImpl implements UpdateKiteLessonUseCase {
 
     private final KiteLessonRepository kiteLessonRepository;
 
+    @Transactional
     @Override
-    public KiteLessonDTO updateKiteLesson(long id, KiteLessonDTO newKiteLessonDTO) {
+    public void updateKiteLesson(UpdateKiteLessonRequestDTO request) {
 
-        KiteLesson existingKiteLesson = kiteLessonRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No kite lesson with this id:" + id + " is found."));
+        Optional<KiteLesson> existingOptionalKiteLesson = kiteLessonRepository.findById(request.getId());
+        if(existingOptionalKiteLesson.isEmpty()) {
+            throw new ResourceNotFoundException("No kite lesson with this id:" + request.getId() + " is found.");
+        }
 
-        existingKiteLesson.setType(newKiteLessonDTO.getType());
-        existingKiteLesson.setHours(newKiteLessonDTO.getHours());
-        existingKiteLesson.setPersons(newKiteLessonDTO.getPersons());
-        existingKiteLesson.setPrice(newKiteLessonDTO.getPrice());
+        KiteLesson kiteLesson = existingOptionalKiteLesson.get();
+        updateFields(request, kiteLesson);
+    }
 
-        kiteLessonRepository.save(existingKiteLesson);
+    private void updateFields (UpdateKiteLessonRequestDTO request, KiteLesson kiteLesson){
 
-        return KiteLessonDTOConverter.convertEntityToDTO(existingKiteLesson);
+        kiteLesson.setType(request.getType());
+        kiteLesson.setHours(request.getHours());
+        kiteLesson.setPersons(request.getPersons());
+        kiteLesson.setPrice(request.getPrice());
+
+        kiteLessonRepository.save(kiteLesson);
     }
 }

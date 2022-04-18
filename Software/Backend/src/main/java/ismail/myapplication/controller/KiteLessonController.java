@@ -1,10 +1,7 @@
 package ismail.myapplication.controller;
 
 import ismail.myapplication.business.*;
-import ismail.myapplication.dto.CreateKiteLessonRequestDTO;
-import ismail.myapplication.dto.CreateKiteLessonResponseDTO;
-import ismail.myapplication.dto.GetAllKiteLessonsResponseDTO;
-import ismail.myapplication.dto.KiteLessonDTO;
+import ismail.myapplication.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -55,10 +52,11 @@ public class KiteLessonController {
 
     //update kite lesson
     @PutMapping("/{id}")
-    public ResponseEntity<KiteLessonDTO> updateKiteLesson(@PathVariable long id, @RequestBody KiteLessonDTO kiteLessonDTO){
+    public ResponseEntity<KiteLessonDTO> updateKiteLesson(@PathVariable("id") long id, @RequestBody UpdateKiteLessonRequestDTO request){
 
-        KiteLessonDTO newKiteLesson = updateKiteLessonUseCase.updateKiteLesson(id, kiteLessonDTO);
-        return ResponseEntity.ok(newKiteLesson);
+        request.setId(id);
+        updateKiteLessonUseCase.updateKiteLesson(request);
+        return ResponseEntity.noContent().build();
     }
 
     //delete kite lesson
