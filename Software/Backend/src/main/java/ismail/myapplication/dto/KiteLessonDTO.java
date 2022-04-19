@@ -2,11 +2,10 @@ package ismail.myapplication.dto;
 
 import lombok.*;
 
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-@Builder
 public class KiteLessonDTO {
     private Long id;
     private String type;

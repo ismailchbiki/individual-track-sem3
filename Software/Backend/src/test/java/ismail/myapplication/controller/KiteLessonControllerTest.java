@@ -1,7 +1,7 @@
 package ismail.myapplication.controller;
 
 import ismail.myapplication.business.*;
-import ismail.myapplication.dto.KiteLessonDTO;
+import ismail.myapplication.dto.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,6 +10,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.List;
+import java.util.Optional;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -26,85 +29,143 @@ class KiteLessonControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private CreateKiteLessonUseCase createKiteLessonUseCase;
-    @MockBean
-    private UpdateKiteLessonUseCase updateKiteLessonUseCase;
-    @MockBean
-    private DeleteKiteLessonUseCase deleteKiteLessonUseCase;
-    @MockBean
     private GetKiteLessonUseCase getKiteLessonUseCase;
     @MockBean
     private GetAllKiteLessonsUseCase getAllKiteLessonsUseCase;
+    @MockBean
+    private DeleteKiteLessonUseCase deleteKiteLessonUseCase;
+    @MockBean
+    private CreateKiteLessonUseCase createKiteLessonUseCase;
+    @MockBean
+    private UpdateKiteLessonUseCase updateKiteLessonUseCase;
 
-   /* @Test
-    void createKiteLesson() throws Exception {
-        KiteLessonDTO expectedRequest = KiteLessonDTO.builder()
-                .type("test-type")
-                .hours(2D)
+    @Test
+    void getKiteLesson_shouldReturn200WithKiteLesson_whenKiteLessonFound() throws Exception {
+        KiteLessonDTO kiteLessonDTO = KiteLessonDTO.builder()
+                .id(10L)
+                .type("prv")
                 .persons(2)
-                .price(150D)
+                .hours(2D)
+                .price(149.99)
+                .build();
+        when(getKiteLessonUseCase.getKiteLessonById(10L)).thenReturn(kiteLessonDTO);
+
+        mockMvc.perform(get("/api/v1/kite-lessons/10"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(header().string("Content-Type", APPLICATION_JSON_VALUE))
+                .andExpect(content().json("""
+                            {"id":10,"type":"prv","persons":2,"hours": 2,"price": 149.99}
+                        """));
+
+        verify(getKiteLessonUseCase).getKiteLessonById(10L);
+    }
+
+//    @Test
+//    void getKiteLesson_shouldReturn404Error_whenKiteLessonNotFound() throws Exception {
+//
+//        KiteLessonDTO kiteLessonDTO = KiteLessonDTO.builder().build();
+//        when(getKiteLessonUseCase.getKiteLessonById(10L)).thenReturn(kiteLessonDTO);
+//
+//        mockMvc.perform(get("/api/v1/kite-lessons/10"))
+//                .andDo(print())
+//                .andExpect(status().isNotFound());
+//
+//        verify(getKiteLessonUseCase).getKiteLessonById(10L);
+//    }
+
+    @Test
+    void getAllKiteLessons_shouldReturn200WithAllKiteLessonsList_WhenNoFilterProvided() throws Exception {
+        GetAllKiteLessonsResponseDTO responseDTO = GetAllKiteLessonsResponseDTO.builder()
+                .kiteLessons(List.of(
+                        KiteLessonDTO.builder().id(1L).type("prv").persons(1).hours(2D).price(149.99).build(),
+                        KiteLessonDTO.builder().id(2L).type("semi-prv").persons(2).hours(2D).price(129.99).build()
+                ))
                 .build();
 
+        when(getAllKiteLessonsUseCase.getKiteLessons()).thenReturn(responseDTO);
+
+        mockMvc.perform(get("/api/v1/kite-lessons"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(header().string("Content-Type", APPLICATION_JSON_VALUE))
+                .andExpect(content().json("""
+                            {
+                                "kiteLessons":[
+                                    {"id":1,"type":"prv","persons":1,"hours": 2,"price": 149.99},
+                                    {"id":2,"type":"semi-prv","persons":2,"hours": 2,"price": 129.99}
+                                ]
+                            }
+                        """));
+
+        verify(getAllKiteLessonsUseCase).getKiteLessons();
+    }
+
+
+    @Test
+    void deleteKiteLesson_shouldReturn204() throws Exception {
+        mockMvc.perform(delete("/api/v1/kite-lessons/20"))
+                .andDo(print())
+                .andExpect(status().isNoContent());
+
+        verify(deleteKiteLessonUseCase).deleteKiteLesson(20L);
+    }
+
+    @Test
+    void createKiteLesson_shouldReturn201_whenRequestIsValid() throws Exception {
+        CreateKiteLessonRequestDTO expectedRequest = CreateKiteLessonRequestDTO.builder()
+                .type("prv")
+                .persons(1)
+                .hours(2D)
+                .price(149.99)
+                .build();
         when(createKiteLessonUseCase.createKiteLesson(expectedRequest))
-                .thenReturn(KiteLessonDTO.builder()
-                        .id(25L)
-                        .type("test-type")
-                        .hours(2D)
-                        .persons(2)
-                        .price(150D)
+                .thenReturn(CreateKiteLessonResponseDTO.builder()
+                        .kiteLessonId(30L)
                         .build());
 
         mockMvc.perform(post("/api/v1/kite-lessons")
                         .contentType(APPLICATION_JSON_VALUE)
                         .content("""
                                 {
-                                    "type": "test-type",
-                                    "hours": 2,
-                                    "persons": 2,
-                                    "price": 150
+                                    "type": "prv",
+                                    "hours": "2",
+                                    "persons": "1",
+                                    "price": "149.99"
                                 }
                                 """))
                 .andDo(print())
                 .andExpect(status().isCreated())
                 .andExpect(content().json("""
-                            { "studentId":  25 }
+                            { "kiteLessonId":  30 }
                         """));
 
         verify(createKiteLessonUseCase).createKiteLesson(expectedRequest);
-    }*/
-
-    @Test
-    void getKiteLesson_shouldReturn200WithKiteLesson_whenKiteLessonFound() throws Exception {
-        KiteLessonDTO kiteLessonDTO = KiteLessonDTO.builder()
-                .id(17L)
-                .type("test-type")
-                .persons(2)
-                .hours(2D)
-                .price(200D)
-                .build();
-
-        when(getKiteLessonUseCase.getKiteLessonById(17L)).thenReturn(kiteLessonDTO);
-
-        mockMvc.perform(get("/api/v1/kite-lessons/17"))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(header().string("Content-Type", APPLICATION_JSON_VALUE))
-                .andExpect(content().json("""
-                            {"id":17, "type":"test-type", "persons":2, "hours":2, "price":200}
-                        """));
-
-        verify(getKiteLessonUseCase).getKiteLessonById(17L);
     }
 
     @Test
-    void getKiteLesson_shouldReturn200Success_whenKiteLessonFound() throws Exception {
-        /*when(getKiteLessonUseCase.getKiteLessonById(155L)).thenReturn(null);*/
-
-        mockMvc.perform(get("/api/v1/kite-lessons/1555"))
+    void updateKiteLesson_shouldReturn204() throws Exception {
+        mockMvc.perform(put("/api/v1/kite-lessons/44")
+                        .contentType(APPLICATION_JSON_VALUE)
+                        .content("""
+                                {
+                                    "type": "prv",
+                                    "hours": "2",
+                                    "persons": "1",
+                                    "price": "149.99"
+                                }
+                                """))
                 .andDo(print())
-                .andExpect(status().isOk());
+                .andExpect(status().isNoContent());
 
-        verify(getKiteLessonUseCase).getKiteLessonById(1555L);
+        UpdateKiteLessonRequestDTO expectedRequest = UpdateKiteLessonRequestDTO.builder()
+                .id(44L)
+                .type("prv")
+                .persons(1)
+                .hours(2D)
+                .price(149.99)
+                .build();
+        verify(updateKiteLessonUseCase).updateKiteLesson(expectedRequest);
     }
 }
 

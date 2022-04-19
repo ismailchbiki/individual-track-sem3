@@ -22,6 +22,31 @@ class KiteLessonRepositoryTest {
     @Autowired
     private KiteLessonRepository kiteLessonRepository;
 
+
+    @Test
+    void save_shouldSaveKiteLessonWithAllFields() {
+
+        KiteLesson kiteLesson = KiteLesson.builder()
+                .type("semi-prive")
+                .persons(2)
+                .hours(2D)
+                .price(99.99)
+                .build();
+
+        KiteLesson savedKiteLesson = kiteLessonRepository.save(kiteLesson);
+        assertNotNull(savedKiteLesson.getId());
+
+        savedKiteLesson = entityManager.find(KiteLesson.class, savedKiteLesson.getId());
+        KiteLesson expectedKiteLesson = KiteLesson.builder()
+                .id(savedKiteLesson.getId())
+                .type(savedKiteLesson.getType())
+                .persons(savedKiteLesson.getPersons())
+                .hours(savedKiteLesson.getHours())
+                .price(savedKiteLesson.getPrice())
+                .build();
+        assertEquals(expectedKiteLesson, savedKiteLesson);
+    }
+
     @Test
     void findByType_shouldReturnKiteLesson_whenItExists() {
 

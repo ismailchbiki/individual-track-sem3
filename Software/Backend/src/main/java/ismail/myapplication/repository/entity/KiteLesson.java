@@ -6,11 +6,10 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "kite_lesson")
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
 @Builder
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class KiteLesson {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

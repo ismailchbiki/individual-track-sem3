@@ -24,13 +24,24 @@ public class GetKiteLessonUseCaseImpl implements GetKiteLessonUseCase {
 
     @Override
     public KiteLessonDTO getKiteLessonByType(String lessonType){
-        for (KiteLesson kiteLesson : kiteLessonRepository.findAll()) {
-            if (kiteLesson.getType().equals(lessonType)) {
-                return KiteLessonDTOConverter.convertEntityToDTO(kiteLesson);
-            }else{
-                throw new ResourceNotFoundException("Kite Lesson is not found with Type: " + lessonType);
-            }
-        }
-        return null;
+
+        KiteLesson kiteLesson = kiteLessonRepository.findByType(lessonType);
+
+                if(kiteLesson.equals(null)){
+                    throw new ResourceNotFoundException("Kite Lesson is not found with Id: " + lessonType);
+                }
+                else {
+                    return KiteLessonDTOConverter.convertEntityToDTO(kiteLesson);
+                }
+
+//        KiteLessonDTO kiteLessonDTO = null;
+//        for (KiteLesson kiteLesson : kiteLessonRepository.findAll()) {
+//            if (kiteLesson.getType().equals(lessonType)) {
+//                kiteLessonDTO = KiteLessonDTOConverter.convertEntityToDTO(kiteLesson);
+//            }else{
+//                throw new ResourceNotFoundException("Kite Lesson is not found with Type: " + lessonType);
+//            }
+//        }
+//        return kiteLessonDTO;
     }
 }

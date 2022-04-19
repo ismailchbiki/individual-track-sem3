@@ -3,6 +3,7 @@ package ismail.myapplication.business.impl;
 import ismail.myapplication.business.CreateKiteLessonUseCase;
 import ismail.myapplication.dto.CreateKiteLessonRequestDTO;
 import ismail.myapplication.dto.CreateKiteLessonResponseDTO;
+import ismail.myapplication.exception.KiteLessonTypeAlreadyExistsException;
 import ismail.myapplication.repository.KiteLessonRepository;
 import ismail.myapplication.repository.entity.KiteLesson;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,10 @@ public class CreateKiteLessonUseCaseImpl implements CreateKiteLessonUseCase {
     @Transactional
     @Override
     public CreateKiteLessonResponseDTO createKiteLesson(CreateKiteLessonRequestDTO request) {
+
+        if (kiteLessonRepository.existsByType(request.getType())) {
+            throw new KiteLessonTypeAlreadyExistsException();
+        }
 
         KiteLesson kiteLesson = KiteLesson.builder()
                 .type(request.getType())

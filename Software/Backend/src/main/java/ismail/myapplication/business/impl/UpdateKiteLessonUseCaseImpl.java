@@ -2,7 +2,7 @@ package ismail.myapplication.business.impl;
 
 import ismail.myapplication.business.UpdateKiteLessonUseCase;
 import ismail.myapplication.dto.UpdateKiteLessonRequestDTO;
-import ismail.myapplication.exception.ResourceNotFoundException;
+import ismail.myapplication.exception.InvalidKiteLessonException;
 import ismail.myapplication.repository.KiteLessonRepository;
 import ismail.myapplication.repository.entity.KiteLesson;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +23,8 @@ public class UpdateKiteLessonUseCaseImpl implements UpdateKiteLessonUseCase {
 
         Optional<KiteLesson> existingOptionalKiteLesson = kiteLessonRepository.findById(request.getId());
         if(existingOptionalKiteLesson.isEmpty()) {
-            throw new ResourceNotFoundException("No kite lesson with this id:" + request.getId() + " is found.");
+            throw new InvalidKiteLessonException("KITE_LESSON_ID_INVALID");
+            //throw new ResourceNotFoundException("No kite lesson with this id:" + request.getId() + " is found.");
         }
 
         KiteLesson kiteLesson = existingOptionalKiteLesson.get();

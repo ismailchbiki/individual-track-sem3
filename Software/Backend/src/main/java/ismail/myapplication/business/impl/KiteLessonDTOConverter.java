@@ -16,14 +16,4 @@ public class KiteLessonDTOConverter {
                 .price(kiteLesson.getPrice())
                 .type(kiteLesson.getType()).build();
     }
-
-    public static KiteLesson convertDTOToEntity(KiteLessonDTO kiteLessonDTO) {
-
-        return KiteLesson.builder()
-                .id(kiteLessonDTO.getId())
-                .hours(kiteLessonDTO.getHours())
-                .price(kiteLessonDTO.getPrice())
-                .type(kiteLessonDTO.getType())
-                .persons(kiteLessonDTO.getPersons()).build();
-    }
 }
