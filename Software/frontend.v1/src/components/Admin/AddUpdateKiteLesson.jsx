@@ -4,7 +4,7 @@ import {
   createKiteLesson,
   getKiteLessonById,
   updateKiteLesson,
-} from "../../services/KiteLessonService";
+} from "../../services/KiteLessonAPI";
 
 export const AddUpdateKiteLesson = () => {
   //fields must match fields from the api (Springboot)
@@ -15,9 +15,9 @@ export const AddUpdateKiteLesson = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const saveOrUpdateKiteLesson = (lesson) => {
+  const saveOrUpdateKiteLesson = (e) => {
     //prevent the page from reloading/refreshing
-    lesson.preventDefault();
+    e.preventDefault();
 
     const kiteLesson = { type, persons, hours, price };
 

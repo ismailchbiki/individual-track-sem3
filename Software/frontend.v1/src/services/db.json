@@ -1,0 +1,26 @@
+{
+  "kite-lessons": [
+    {
+      "id": 1,
+      "firstName": "Ismail",
+      "lastName": "Chbiki",
+      "email": "ismail@email.com",
+      "lessonType": "Private",
+      "hours": 2,
+      "place": "Den Haag",
+      "date": "2022-07-01",
+      "time": "10:00"
+    },
+    {
+      "id": 2,
+      "firstName": "Walid",
+      "lastName": "Elabdi",
+      "email": "walid@email.com",
+      "lessonType": "Semi-private",
+      "hours": 2,
+      "place": "Noordwijk",
+      "date": "2022-08-16",
+      "time": "9:30"
+    }
+  ]
+}

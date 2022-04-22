@@ -1,0 +1,13 @@
+.Book {
+  text-align: center;
+  display: flex;
+  margin-top: 80px;
+  display: block;
+}
+.form {
+  margin: auto;
+}
+
+button {
+  margin: 20px;
+}

@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import {
-  deleteKiteLesson,
-  GetKiteLessons,
-} from "../../services/KiteLessonService";
+import { deleteKiteLesson, GetKiteLessons } from "../../services/KiteLessonAPI";
 
 export const KiteLessonsList = () => {
   const [KiteLessons, setKiteLessons] = useState([]);
