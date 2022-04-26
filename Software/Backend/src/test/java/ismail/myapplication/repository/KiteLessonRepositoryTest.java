@@ -1,6 +1,6 @@
 package ismail.myapplication.repository;
 
-import ismail.myapplication.repository.entity.KiteLesson;
+import ismail.myapplication.repository.entity.kiteLesson.KiteLesson;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

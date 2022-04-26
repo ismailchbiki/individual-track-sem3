@@ -1,8 +1,7 @@
 package ismail.myapplication.controller;
 
-import ismail.myapplication.business.*;
-import ismail.myapplication.dto.*;
-import org.junit.jupiter.api.Assertions;
+import ismail.myapplication.service.kiteLesson.*;
+import ismail.myapplication.dto.kiteLesson.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;

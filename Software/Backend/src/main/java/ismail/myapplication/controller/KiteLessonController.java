@@ -1,7 +1,7 @@
 package ismail.myapplication.controller;
 
-import ismail.myapplication.business.*;
-import ismail.myapplication.dto.*;
+import ismail.myapplication.service.kiteLesson.*;
+import ismail.myapplication.dto.kiteLesson.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
