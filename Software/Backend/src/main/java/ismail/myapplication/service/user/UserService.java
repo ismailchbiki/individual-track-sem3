@@ -1,14 +1,18 @@
 package ismail.myapplication.service.user;
 
-import ismail.myapplication.repository.entity.user.Role;
-import ismail.myapplication.repository.entity.user.User;
+import ismail.myapplication.dto.user.RoleDTO;
+import ismail.myapplication.dto.user.UserDTO;
 
 import java.util.List;
 
 public interface UserService {
-    User saveUser(User user);
-    Role saveRole(Role role);
+    UserDTO saveUser(UserDTO user);
+
+    RoleDTO saveRole(RoleDTO role);
+
     void addRoleToUser(String username, String roleName);
-    User getUser(String username);
-    List<User> getUsers();
+
+    UserDTO getUser(String username);
+
+    List<UserDTO> getUsers();
 }

@@ -5,8 +5,9 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import ismail.myapplication.dto.user.RoleDTO;
+import ismail.myapplication.dto.user.UserDTO;
 import ismail.myapplication.repository.entity.user.Role;
-import ismail.myapplication.repository.entity.user.User;
 import ismail.myapplication.service.user.UserService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -36,22 +37,22 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/users")
-    public ResponseEntity<List<User>> getUsers() {
+    public ResponseEntity<List<UserDTO>> getUsers() {
         return ResponseEntity.ok().body(userService.getUsers());
     }
 
     @PostMapping("/user/save")
-    public ResponseEntity<User> saveUser(@RequestBody User user) {
+    public ResponseEntity<UserDTO> saveUser(@RequestBody UserDTO userDTO) {
         //returns specific details instead of just 200 response
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/save").toUriString());
-        return ResponseEntity.created(uri).body(userService.saveUser(user));
+        return ResponseEntity.created(uri).body(userService.saveUser(userDTO));
     }
 
     @PostMapping("/role/save")
-    public ResponseEntity<Role> saveRole(@RequestBody Role role) {
+    public ResponseEntity<RoleDTO> saveRole(@RequestBody RoleDTO roleDTO) {
         //returns specific details instead of just 200 response
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/role/save").toUriString());
-        return ResponseEntity.created(uri).body(userService.saveRole(role));
+        return ResponseEntity.created(uri).body(userService.saveRole(roleDTO));
     }
 
     @PostMapping("/role/add-to-user")
@@ -79,14 +80,14 @@ public class UserController {
                 String username = decodedJWT.getSubject();
                 //once we get the username, we should load the user,
                 //(to check if the user exists in the DB)
-                User user = userService.getUser(username);
+                UserDTO userDTO = userService.getUser(username);
 
                 //creating the token
                 String access_token = JWT.create()
-                        .withSubject(user.getUsername())
+                        .withSubject(userDTO.getEmail())
                         .withExpiresAt(new Date(System.currentTimeMillis() + 10 * 60 * 1000))
                         .withIssuer(request.getRequestURL().toString())
-                        .withClaim("roles", user.getRoles().stream().map(Role::getName)
+                        .withClaim("roles", userDTO.getRoles().stream().map(Role::getName)
                                 .collect(Collectors.toList()))
                         .sign(algorithm);
 
