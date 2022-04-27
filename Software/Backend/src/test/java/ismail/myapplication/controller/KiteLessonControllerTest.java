@@ -1,7 +1,7 @@
 package ismail.myapplication.controller;
 
-import ismail.myapplication.service.kiteLesson.*;
 import ismail.myapplication.dto.kiteLesson.*;
+import ismail.myapplication.service.kiteLesson.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,7 +98,6 @@ class KiteLessonControllerTest {
 
         verify(getAllKiteLessonsUseCase).getKiteLessons();
     }
-
 
     @Test
     void deleteKiteLesson_shouldReturn204() throws Exception {

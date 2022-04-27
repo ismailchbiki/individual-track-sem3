@@ -1,25 +1,19 @@
 package ismail.myapplication.repository.entity.user;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
+import static javax.persistence.GenerationType.AUTO;
+
 //child class table
 @Entity
-@Table(name = "role")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Role {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = AUTO)
     private Long id;
     private String name;
-
-    public Role(String name) {
-        this.name = name;
-    }
 }
