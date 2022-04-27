@@ -1,7 +1,39 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  //msg to show when success or fail login
+  const userRef = useRef();
+  const errRef = useRef();
+  const [errMsg, setErrMsg] = useState("");
+  const [success, setSuccess] = useState(false);
+
+  //show error msg when login fails
+  useEffect(() => {
+    setErrMsg("");
+  }, [email, password]);
+
+  //on log in click
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const user = { email, password };
+    console.log(user);
+    // loginUser(user)
+    //   .then((res) => {
+    //     console.log(user);
+    //     console.log(res);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+
+    console.log(email, password);
+  };
+
   return (
     <div style={{ marginTop: "15vh" }} className="container">
       <div className="row">
@@ -22,25 +54,31 @@ const Login = () => {
 
             <br />
             <div className="form-group">
-              <label for="username"> Username </label> :
+              <label> Email </label> :
               <input
-                type="text"
                 className="form-control"
-                id="username"
-                name="username"
-                placeholder="Enter Email ID"
+                id="email"
+                type="email"
+                name="email"
+                placeholder="Enter Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </div>
 
             <br />
             <div className="form-group">
-              <label for="password">Password</label>:
+              <label>Password</label>:
               <input
-                type="password"
-                id="password"
-                name="password"
                 className="form-control"
+                id="password"
+                type="password"
+                name="password"
                 placeholder="Enter Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
               />
             </div>
 
@@ -54,6 +92,7 @@ const Login = () => {
                     id="login-submit"
                     className="form-control btn btn-primary"
                     value="Log In"
+                    onClick={(e) => handleSubmit(e)}
                   />
                 </div>
               </div>

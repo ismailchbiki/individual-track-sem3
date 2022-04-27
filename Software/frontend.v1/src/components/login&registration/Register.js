@@ -2,19 +2,20 @@ import React, { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { createUser } from "../../services/user/UserAPI";
 
-const Registration = () => {
+const Register = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [roles, setRoles] = useState([]);
 
-  //for login (not registration)
+  //msg to show when registering fails
   const userRef = useRef();
   const errRef = useRef();
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
 
+  //show msg when registering fails
   useEffect(() => {
     setErrMsg("");
   }, [email, password]);
@@ -70,9 +71,11 @@ const Registration = () => {
               <div className="form-group">
                 <label className="control-label">First Name</label>
                 <input
-                  id="firstName"
                   className="form-control"
+                  id="firstName"
                   type="text"
+                  name="firstName"
+                  placeholder="Enter first name"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                   required
@@ -86,6 +89,7 @@ const Registration = () => {
                   id="lastName"
                   className="form-control"
                   type="text"
+                  placeholder="Enter last name"
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                   required
@@ -99,6 +103,7 @@ const Registration = () => {
                   id="email"
                   className="form-control"
                   type="email"
+                  placeholder="Enter email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -112,6 +117,7 @@ const Registration = () => {
                   id="password"
                   className="form-control"
                   type="password"
+                  placeholder="Enter password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -142,4 +148,4 @@ const Registration = () => {
   );
 };
 
-export default Registration;
+export default Register;

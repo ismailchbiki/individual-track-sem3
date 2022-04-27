@@ -1,12 +1,3 @@
 {
-  "users": [
-    {
-      "firstName": "Ismail",
-      "lastName": "Chbiki",
-      "email": "ismailchbiki.nl@gmail.com",
-      "password": "123",
-      "roles": [],
-      "id": 1
-    }
-  ]
+  "users": []
 }
