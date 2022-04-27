@@ -28,6 +28,8 @@ const Header = () => {
 
         <Link to="/">About</Link>
         <Link to="/">Contact</Link>
+        <Link to="/api/v1/login">Login</Link>
+        <Link to="/api/v1/register">Register</Link>
       </ul>
       <div onClick={navToggle} className={icon}>
         <div className="line1"></div>

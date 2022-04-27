@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { makeBooking } from "../../services/BookingAPI";
+import { makeBooking } from "../../services/booking/BookingAPI";
 import "./Book.css";
 
 function Book() {

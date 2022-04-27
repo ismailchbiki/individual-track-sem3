@@ -1,11 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from "./components/Layout/Header";
-import Homepage from "./components/Layout/Homepage";
-import { Footer } from "./components/Layout/Footer";
-import Error from "./components/ErrorHandling/Error";
-import { KiteLessonsList } from "./components/Admin/KiteLessonsList";
-import { AddUpdateKiteLesson } from "./components/Admin/AddUpdateKiteLesson";
-import Book from "./components/Booking/Book";
+import Header from "./components/layout/Header";
+import Homepage from "./components/layout/Homepage";
+import { Footer } from "./components/layout/Footer";
+import Error from "./components/errorHandling/Error";
+import { KiteLessonsList } from "./components/admin/KiteLessonsList";
+import { AddUpdateKiteLesson } from "./components/admin/AddUpdateKiteLesson";
+import Book from "./components/booking/Book";
+import Register from "./components/login&registration/Register";
+import Login from "./components/login&registration/Login";
 
 const App = () => {
   return (
@@ -29,6 +31,8 @@ const App = () => {
               element={<AddUpdateKiteLesson />}
             />
             <Route path="/api/v1/book" element={<Book />} />
+            <Route path="/api/v1/register" element={<Register />} />
+            <Route path="/api/v1/login" element={<Login />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </div>

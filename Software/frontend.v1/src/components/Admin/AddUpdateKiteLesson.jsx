@@ -4,7 +4,7 @@ import {
   createKiteLesson,
   getKiteLessonById,
   updateKiteLesson,
-} from "../../services/KiteLessonAPI";
+} from "../../services/admin/KiteLessonAPI";
 
 export const AddUpdateKiteLesson = () => {
   //fields must match fields from the api (Springboot)
