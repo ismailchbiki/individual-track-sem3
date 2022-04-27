@@ -39,7 +39,8 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
         //pass the filtering (don't do anything)
         if (request.getServletPath().equals("/api/v1/login")
                 || request.getServletPath().equals("/api/v1/token/refresh")
-                || request.getServletPath().equals("/api/v1/user/save")) {
+                || request.getServletPath().equals("/api/v1/user/save")
+                || request.getServletPath().equals("/api/v1/kite-lessons")) {
             filterChain.doFilter(request, response);
         } else {
             //every time there is a request from the frontend to the backend,

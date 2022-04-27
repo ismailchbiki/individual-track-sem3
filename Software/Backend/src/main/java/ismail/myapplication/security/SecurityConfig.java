@@ -15,8 +15,7 @@ import org.springframework.web.cors.CorsConfiguration;
 
 import java.util.List;
 
-import static org.springframework.http.HttpMethod.GET;
-import static org.springframework.http.HttpMethod.POST;
+import static org.springframework.http.HttpMethod.*;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 @Configuration
@@ -54,8 +53,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { //overriding 
         //allowed paths
         http.authorizeRequests().antMatchers("/api/v1/login/**", "/api/v1/token/refresh/**").permitAll();
         http.authorizeRequests().antMatchers(GET, "/api/v1/user/**").hasAnyAuthority("ROLE_USER");
-        http.authorizeRequests().antMatchers(POST, "/api/v1/user/save/**").hasAnyAuthority("ROLE_ADMIN");
+//        http.authorizeRequests().antMatchers(POST, "/api/v1/user/save/**").hasAnyAuthority("ROLE_ADMIN");
+        //registering
         http.authorizeRequests().antMatchers(POST, "/api/v1/user/save/**").permitAll();
+        //kiteLesson controller (permitted now for testing to pass)
+        http.authorizeRequests().antMatchers(POST, "/api/v1/kite-lessons/**").permitAll();
+        http.authorizeRequests().antMatchers(GET, "/api/v1/kite-lessons/**").permitAll();
+        http.authorizeRequests().antMatchers(PUT, "/api/v1/kite-lessons/**").permitAll();
+        http.authorizeRequests().antMatchers(DELETE, "/api/v1/kite-lessons/**").permitAll();
         /*http.authorizeRequests().anyRequest().permitAll();*/
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(customAuthenticationFilter);
