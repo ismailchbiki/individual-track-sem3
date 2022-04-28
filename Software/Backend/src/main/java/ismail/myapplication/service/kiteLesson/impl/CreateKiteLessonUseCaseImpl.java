@@ -1,23 +1,25 @@
 package ismail.myapplication.service.kiteLesson.impl;
 
-import ismail.myapplication.service.kiteLesson.CreateKiteLessonUseCase;
 import ismail.myapplication.dto.kiteLesson.CreateKiteLessonRequestDTO;
 import ismail.myapplication.dto.kiteLesson.CreateKiteLessonResponseDTO;
 import ismail.myapplication.exception.KiteLessonTypeAlreadyExistsException;
 import ismail.myapplication.repository.KiteLessonRepository;
 import ismail.myapplication.repository.entity.kiteLesson.KiteLesson;
+import ismail.myapplication.service.kiteLesson.CreateKiteLessonUseCase;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
+@Transactional
 @Service
 @RequiredArgsConstructor
+@Slf4j /*log the output to the console*/
 public class CreateKiteLessonUseCaseImpl implements CreateKiteLessonUseCase {
 
     private final KiteLessonRepository kiteLessonRepository;
 
-    @Transactional
     @Override
     public CreateKiteLessonResponseDTO createKiteLesson(CreateKiteLessonRequestDTO request) {
 

@@ -1,20 +1,22 @@
 package ismail.myapplication.service.kiteLesson.impl;
 
-import ismail.myapplication.service.kiteLesson.DeleteKiteLessonUseCase;
 import ismail.myapplication.repository.KiteLessonRepository;
+import ismail.myapplication.service.kiteLesson.DeleteKiteLessonUseCase;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
+@Transactional
 @Service
 @RequiredArgsConstructor
+@Slf4j /*log the output to the console*/
 public class DeleteKiteLessonUseCaseImpl implements DeleteKiteLessonUseCase {
 
     private final KiteLessonRepository kiteLessonRepository;
 
     @Override
-    @Transactional
     public void deleteKiteLesson(long id) {
 
 //        KiteLesson existingKiteLesson = kiteLessonRepository.findById(id)
