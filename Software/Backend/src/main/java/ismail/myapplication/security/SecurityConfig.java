@@ -37,25 +37,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { //overriding 
     protected void configure(HttpSecurity http) throws Exception {
         //over-writing the default permitted url (/login) with a custom one
         CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(authenticationManagerBean());
-        customAuthenticationFilter.setFilterProcessesUrl("/api/v1/login");
+        customAuthenticationFilter.setFilterProcessesUrl("/api/v1/user/login");
 
         http.csrf().disable();
 
         //allowed cors origins
         http.cors().configurationSource(request -> {
             var cors = new CorsConfiguration();
-            cors.setAllowedOrigins(List.of("http://localhost:3000", "http://127.0.0.1:80", "http://example.com"));
+            cors.setAllowedOrigins(List.of("http://localhost:3000", "http://127.0.0.1:80", "http://url-example.com"));
             cors.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
             cors.setAllowedHeaders(List.of("*"));
             return cors;
         });
         http.sessionManagement().sessionCreationPolicy(STATELESS);
         //allowed paths
-        http.authorizeRequests().antMatchers("/api/v1/login/**", "/api/v1/token/refresh/**").permitAll();
-        http.authorizeRequests().antMatchers(GET, "/api/v1/user/**").hasAnyAuthority("ROLE_USER");
-//        http.authorizeRequests().antMatchers(POST, "/api/v1/user/save/**").hasAnyAuthority("ROLE_ADMIN");
+        http.authorizeRequests().antMatchers("/api/v1/user/**", "/api/v1/token/refresh/**").permitAll();
+        //permit to only these user roles
+        http.authorizeRequests().antMatchers(GET, "/api/v1/user/**").hasAnyAuthority("ROLE_USER", "ROLE_MANAGER", "ROLE_MANAGER", "ROLE_SUPER_ADMIN");
+        //http.authorizeRequests().antMatchers(POST, "/api/v1/user/save/**").hasAnyAuthority("ROLE_ADMIN");
         //registering
         http.authorizeRequests().antMatchers(POST, "/api/v1/user/save/**").permitAll();
+        //login
+        http.authorizeRequests().antMatchers(POST, "/api/v1/user/login/**").permitAll();
         //kiteLesson controller (permitted now for testing to pass)
         http.authorizeRequests().antMatchers(POST, "/api/v1/kite-lessons/**").permitAll();
         http.authorizeRequests().antMatchers(GET, "/api/v1/kite-lessons/**").permitAll();
