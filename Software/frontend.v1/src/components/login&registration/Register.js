@@ -10,15 +10,15 @@ const Register = () => {
   const [roles, setRoles] = useState([]);
 
   //msg to show when registering fails
-  const userRef = useRef();
+  // const userRef = useRef();
   const errRef = useRef();
   const [errMsg, setErrMsg] = useState("");
-  const [success, setSuccess] = useState(false);
+  // const [success, setSuccess] = useState(false);
 
   //show msg when registering fails
-  useEffect(() => {
-    setErrMsg("");
-  }, [email, password]);
+  // useEffect(() => {
+  //   setErrMsg("");
+  // }, [email, password]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

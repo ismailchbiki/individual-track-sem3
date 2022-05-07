@@ -1,83 +1,60 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { loginUser } from "../../services/user/UserAPI";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
-  //msg to show when success or fail login
-  const userRef = useRef();
-  const errRef = useRef();
-  const [errMsg, setErrMsg] = useState("");
-  const [success, setSuccess] = useState(false);
-
-  //show error msg when login fails
-  useEffect(() => {
-    setErrMsg("");
-  }, [email, password]);
 
   //on log in click
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const user = { email, password };
+    const user = { username, password };
     console.log(user);
-    // loginUser(user)
-    //   .then((res) => {
-    //     console.log(user);
-    //     console.log(res);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-
-    console.log(email, password);
+    loginUser(user)
+      .then((res) => {
+        console.log(user);
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
-    <div style={{ marginTop: "15vh" }} className="container">
-      <div className="row">
-        <div className="col-md-6 col-md-offset-3">
-          <h1> User Login Page </h1>
-          {/* <form th:action="@{/login}" method="post"> */}
-          <form>
-            {/* <!-- error message --> */}
-            {/* <div th:if="${param.error}">
-                    <div className="alert alert-danger">Invalid username or
-                        password.</div>
-                </div> */}
-
-            {/* <!-- logout message --> */}
-            {/* <div th:if="${param.logout}">
-                    <div className="alert alert-info">You have been logged out.</div>
-                </div> */}
+    <>
+      <div style={{ marginTop: "15vh" }} className="container">
+        <div className="row">
+          <div className="col-md-6 col-md-offset-3">
+            <h1> User Login Page </h1>
 
             <br />
             <div className="form-group">
-              <label> Email </label> :
+              <label htmlFor="email"> Email :</label>
               <input
                 className="form-control"
                 id="email"
                 type="email"
                 name="email"
                 placeholder="Enter Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setUsername(e.target.value)}
+                value={username}
                 required
               />
             </div>
 
             <br />
             <div className="form-group">
-              <label>Password</label>:
+              <label htmlFor="password">Password :</label>
               <input
                 className="form-control"
                 id="password"
                 type="password"
                 name="password"
                 placeholder="Enter Password"
-                value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                value={password}
                 required
               />
             </div>
@@ -97,16 +74,18 @@ const Login = () => {
                 </div>
               </div>
             </div>
-          </form>
-          <br />
-          <div className="form-group">
-            <span>
-              New user? &nbsp;<Link to={"/api/v1/register"}>Register here</Link>
-            </span>
+
+            <br />
+            <div className="form-group">
+              <span>
+                New user? &nbsp;
+                <Link to={"/api/v1/register"}>Register here</Link>
+              </span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
