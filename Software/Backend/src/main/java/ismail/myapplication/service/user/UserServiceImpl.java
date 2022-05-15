@@ -55,23 +55,21 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public UserDTO saveUser(UserDTO userDTO) {
-        log.info("saving the user {} {} to the DB", userDTO.getFirstName(), userDTO.getLastName());
+        log.info("saving the user {} {} to the DB", userDTO.getEmail());
         userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
 
         User user = User.builder()
                 .id(userDTO.getId())
-                .firstName(userDTO.getFirstName())
-                .lastName(userDTO.getLastName())
                 .email(userDTO.getEmail())
                 .password(userDTO.getPassword())
+                .roles(userDTO.getRoles())
                 .build();
 
         User savedUser = userRepository.save(user);
         return UserDTO.builder().id(savedUser.getId())
-                .firstName(savedUser.getFirstName())
-                .lastName(savedUser.getLastName())
                 .email(savedUser.getEmail())
                 .password(savedUser.getPassword())
+                .roles(userDTO.getRoles())
                 .build();
     }
 
@@ -104,8 +102,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         log.info("Fetching user {}", username);
         User user = userRepository.findByEmail(username);
         return UserDTO.builder()
-                .firstName(user.getFirstName())
-                .lastName(user.getLastName())
                 .email(user.getEmail())
                 .password(user.getPassword())
                 .build();

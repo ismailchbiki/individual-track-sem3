@@ -25,8 +25,6 @@ public class User {
     @Id
     @GeneratedValue(strategy = AUTO)
     private Long id;
-    private String firstName;
-    private String lastName;
     private String email;
     private String password;
     @ManyToMany(fetch = EAGER)
