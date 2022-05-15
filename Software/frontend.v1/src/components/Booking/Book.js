@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { makeBooking } from "../../services/booking/BookingAPI";
-import "./Book.css";
+import "./styles/Book.css";
 
 function Book() {
   const [form, setForm] = useState();

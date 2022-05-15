@@ -6,8 +6,8 @@ export const getUsers = () => {
   return axios.get(USER_BASE_REST_API_URL + "/users");
 };
 
-export const createUser = (user) => {
-  return axios.post(USER_BASE_REST_API_URL + "/user/save", user);
+export const createUser = (newUser) => {
+  return axios.post(USER_BASE_REST_API_URL + "/user/save", newUser);
 };
 
 export const loginUser = (user) => {

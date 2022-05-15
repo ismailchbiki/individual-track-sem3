@@ -6,8 +6,8 @@ import Error from "./components/errorHandling/Error";
 import { KiteLessonsList } from "./components/admin/KiteLessonsList";
 import { AddUpdateKiteLesson } from "./components/admin/AddUpdateKiteLesson";
 import Book from "./components/booking/Book";
-import Register from "./components/login&registration/Register";
-import Login from "./components/login&registration/Login";
+import Register from "./components/register&login/Register";
+import Login from "./components/register&login/Login";
 
 const App = () => {
   return (
