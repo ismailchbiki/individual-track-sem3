@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   deleteKiteLesson,
   GetKiteLessons,
@@ -7,6 +7,7 @@ import {
 
 export const KiteLessonsList = () => {
   const [KiteLessons, setKiteLessons] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getAllKiteLessons();
@@ -25,7 +26,7 @@ export const KiteLessonsList = () => {
 
   const deleteLesson = (id) => {
     deleteKiteLesson(id)
-      .then((response) => {
+      .then(() => {
         getAllKiteLessons();
       })
       .catch((error) => {
@@ -38,11 +39,7 @@ export const KiteLessonsList = () => {
       <h2 className="text-center" style={{ marginTop: "15px" }}>
         Kite Lessons List
       </h2>
-      <Link
-        to="/api/v1/add-kite-lesson"
-        className="btn btn-primary mb-2"
-        style={{ marginbottom: "20px" }}
-      >
+      <Link to="/api/v1/add-kite-lesson" className="btn btn-primary mb-2">
         Add Kite Lesson
       </Link>
       <table className="table table-bordered table-striped">
@@ -68,13 +65,21 @@ export const KiteLessonsList = () => {
                   <td>{lesson.persons}</td>
                   <td>{lesson.hours}</td>
                   <td>{lesson.price}</td>
-                  <td>
-                    <Link
+                  <td
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      margin: "auto",
+                    }}
+                  >
+                    <button
                       className="btn btn-info"
-                      to={`/api/v1/update-kite-lesson/${lesson.id}`}
+                      onClick={() =>
+                        navigate(`/api/v1/update-kite-lesson/${lesson.id}`)
+                      }
                     >
                       Update
-                    </Link>
+                    </button>
                     <button
                       className="btn btn-danger "
                       onClick={() => {
