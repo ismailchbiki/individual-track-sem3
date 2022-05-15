@@ -57,6 +57,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { //overriding 
         //http.authorizeRequests().antMatchers(POST, "/api/v1/user/save/**").hasAnyAuthority("ROLE_ADMIN");
         //registering
         http.authorizeRequests().antMatchers(POST, "/api/v1/user/save/**").permitAll();
+        //adding role to user
+        http.authorizeRequests().antMatchers(POST, "/api/v1/role/**").permitAll();
         //login
         http.authorizeRequests().antMatchers(POST, "/api/v1/user/login/**").permitAll();
         //kiteLesson controller (permitted now for testing to pass)

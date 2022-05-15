@@ -5,7 +5,7 @@ import {
   faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { createUser } from "../../services/user/UserAPI";
+import { addRoleToUser, createUser } from "../../services/user/UserAPI";
 import { Link } from "react-router-dom";
 
 const USER_EMAIL =
@@ -30,7 +30,7 @@ const Register = () => {
   const [validPwd, setValidPwd] = useState(false);
   const [pwdFocus, setPwdFocus] = useState(false);
 
-  const [roles, setRoles] = useState(["USER"]);
+  const [roleName, setRoleName] = useState("USER");
 
   const [matchPwd, setMatchPwd] = useState("");
   const [validMatch, setValidMatch] = useState(false);
@@ -80,11 +80,13 @@ const Register = () => {
       return;
     }
 
-    //adding new user to the database
-    const newUser = { email, password, roles };
+    //adding new user to the database and giving them role
+    const newUser = { email, password };
+    const userRole = { email, roleName };
 
     try {
       const response = await createUser(newUser);
+      const roleResponse = await addRoleToUser(userRole);
       console.log(newUser);
       console.log(response?.data);
       console.log(response?.accessToken);
@@ -117,7 +119,7 @@ const Register = () => {
         <section>
           <h1>Success!</h1>
           <p>
-            <a href="#">Sign In</a>
+            <Link to={"/api/v1/login"}>Sign In</Link>
           </p>
         </section>
       ) : (

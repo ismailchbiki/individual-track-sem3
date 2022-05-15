@@ -24,31 +24,31 @@ public class MyApplication {
         return new BCryptPasswordEncoder();
     }
 
-    /*@Bean
-    CommandLineRunner run(UserService userService) {
-        return args -> {
-            userService.saveRole(new Role(null, "ROLE_USER"));
-            userService.saveRole(new Role(null, "ROLE_MANAGER"));
-            userService.saveRole(new Role(null, "ROLE_MANAGER"));
-            userService.saveRole(new Role(null, "ROLE_SUPER_ADMIN"));
-
-            userService.saveUser(new User(null, "Ismail Chbiki", "Ismailchbiki", "password", new ArrayList<>()));
-            userService.saveUser(new User(null, "Walid Chbiki", "Walidchbiki", "password1", new ArrayList<>()));
-            userService.saveUser(new User(null, "Kim Lelie", "Kimlelie", "password2", new ArrayList<>()));
-            userService.saveUser(new User(null, "Amal Chbiki", "Amalchbiki", "password3", new ArrayList<>()));
-
-            userService.addRoleToUser("Ismailchbiki", "ROLE_SUPER_ADMIN");
-            userService.addRoleToUser("Ismailchbiki", "ROLE_ADMIN");
-            userService.addRoleToUser("Ismailchbiki", "ROLE_MANAGER");
-
-            userService.addRoleToUser("Kimlelie", "ROLE_MANAGER");
-            userService.addRoleToUser("Kimlelie", "ROLE_ADMIN");
-
-            userService.addRoleToUser("Walidchbiki", "ROLE_USER");
-            userService.addRoleToUser("Walidchbiki", "ROLE_ADMIN");
-
-            userService.addRoleToUser("Amalchbiki", "ROLE_USER");
-            userService.addRoleToUser("Amalchbiki", "ROLE_MANAGER");
-        };
-    }*/
+//    @Bean
+//    CommandLineRunner run(UserService userService) {
+//        return args -> {
+//            userService.saveRole(new RoleDTO(null, "USER"));
+//            userService.saveRole(new RoleDTO(null, "MANAGER"));
+//            userService.saveRole(new RoleDTO(null, "MANAGER"));
+//            userService.saveRole(new RoleDTO(null, "SUPER_ADMIN"));
+//
+//            userService.saveUser(new User(null, "Ismail Chbiki", "Ismailchbiki", "password", new ArrayList<>()));
+//            userService.saveUser(new User(null, "Max Browne", "max", "password1", new ArrayList<>()));
+//            userService.saveUser(new User(null, "Maria Shay", "maria", "password2", new ArrayList<>()));
+//            userService.saveUser(new User(null, "Sana Figne", "sana", "password3", new ArrayList<>()));
+//
+//            userService.addRoleToUser("Ismailchbiki", "ROLE_SUPER_ADMIN");
+//            userService.addRoleToUser("Ismailchbiki", "ROLE_ADMIN");
+//            userService.addRoleToUser("Ismailchbiki", "ROLE_MANAGER");
+//
+//            userService.addRoleToUser("someUser", "ROLE_MANAGER");
+//            userService.addRoleToUser("someUser", "ROLE_ADMIN");
+//
+//            userService.addRoleToUser("SomeUser", "ROLE_USER");
+//            userService.addRoleToUser("SomeUser", "ROLE_ADMIN");
+//
+//            userService.addRoleToUser("SomeUser", "ROLE_USER");
+//            userService.addRoleToUser("SomeUser", "ROLE_MANAGER");
+//        };
+//    }
 }

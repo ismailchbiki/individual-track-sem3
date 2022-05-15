@@ -10,6 +10,10 @@ export const createUser = (newUser) => {
   return axios.post(USER_BASE_REST_API_URL + "/user/save", newUser);
 };
 
+export const addRoleToUser = (userRole) => {
+  return axios.post(USER_BASE_REST_API_URL + "/role/add-to-user", userRole);
+};
+
 export const loginUser = (user) => {
   const params = new URLSearchParams();
 
