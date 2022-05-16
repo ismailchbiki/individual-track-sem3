@@ -1,4 +1,4 @@
-//The context is used to provide
+//The context is used to provide a globale state for the app
 import { createContext, useState } from "react";
 
 //An empty object inside create context
