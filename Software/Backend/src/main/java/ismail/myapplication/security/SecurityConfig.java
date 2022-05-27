@@ -51,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { //overriding 
         });
         http.sessionManagement().sessionCreationPolicy(STATELESS);
         //allowed paths
-        http.authorizeRequests().antMatchers("/api/v1/user/**", "/api/v1/token/refresh/**").permitAll();
+        http.authorizeRequests().antMatchers("/api/v1/user/**", "/api/v1/token/refresh/**", "/booking/**").permitAll();
         //permit to only these user roles
         http.authorizeRequests().antMatchers(GET, "/api/v1/user/**").hasAnyAuthority("ROLE_USER", "ROLE_MANAGER", "ROLE_MANAGER", "ROLE_SUPER_ADMIN");
         //http.authorizeRequests().antMatchers(POST, "/api/v1/user/save/**").hasAnyAuthority("ROLE_ADMIN");
@@ -66,7 +66,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { //overriding 
         http.authorizeRequests().antMatchers(GET, "/api/v1/kite-lessons/**").permitAll();
         http.authorizeRequests().antMatchers(PUT, "/api/v1/kite-lessons/**").permitAll();
         http.authorizeRequests().antMatchers(DELETE, "/api/v1/kite-lessons/**").permitAll();
-        /*http.authorizeRequests().anyRequest().permitAll();*/
+
+        //booking controller
+        http.authorizeRequests().antMatchers(POST, "/booking/**").permitAll();
+        http.authorizeRequests().antMatchers(GET, "/booking/all-bookings/**").permitAll();
+        http.authorizeRequests().antMatchers(PUT, "/booking/update-booking/**").permitAll();
+        http.authorizeRequests().antMatchers(DELETE, "/booking/cancel-booking/**").permitAll();
+
+        //authorize all requests
+//        http.authorizeRequests().anyRequest().permitAll();
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(customAuthenticationFilter);
         //to make sure that this filter comes before the auto filters,

@@ -45,6 +45,7 @@ public class MyApplication {
                     LocalDate.now()
             );
 
+            //logic here to find by email
             bookingRepository.save(booking);
         };
     }

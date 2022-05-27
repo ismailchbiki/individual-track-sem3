@@ -28,6 +28,7 @@ public class Booking {
     @Field(name = "Last name")
     private String lastName;
 
+    //    @Indexed(unique = true)
     @Field(name = "Email")
     private String email;
 
