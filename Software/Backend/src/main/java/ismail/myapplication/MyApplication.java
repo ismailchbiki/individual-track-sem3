@@ -1,11 +1,17 @@
 package ismail.myapplication;
 
+import ismail.myapplication.repository.BookingRepository;
+import ismail.myapplication.repository.entity.booking.Booking;
 import org.modelmapper.ModelMapper;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @SpringBootApplication
 public class MyApplication {
@@ -22,6 +28,25 @@ public class MyApplication {
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    CommandLineRunner runner(BookingRepository bookingRepository) {
+        return args -> {
+            Booking booking = new Booking(
+                    "Ismail",
+                    "Chbiki",
+                    "ismail@email.com",
+                    "Private",
+                    10,
+                    "Duindorp",
+                    LocalDate.now(),
+                    LocalTime.now(),
+                    LocalDate.now()
+            );
+
+            bookingRepository.save(booking);
+        };
     }
 
 //    @Bean
