@@ -10,8 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.util.Date;
 
 @SpringBootApplication
 public class MyApplication {
@@ -40,9 +39,9 @@ public class MyApplication {
                     "Private",
                     10,
                     "Duindorp",
-                    LocalDate.now(),
-                    LocalTime.now(),
-                    LocalDate.now()
+                    new Date(),
+                    new Date(),
+                    new Date()
             );
 
             //logic here to find by email

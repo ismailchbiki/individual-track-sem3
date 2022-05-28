@@ -7,10 +7,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.util.Date;
 
 @Data
 @Builder
@@ -41,17 +39,23 @@ public class Booking {
     private String location;
 
     @Field(name = "Date")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private LocalDate date;
+    private Date date;
 
     @Field(name = "Time")
-    @DateTimeFormat(pattern = "hh-mm")
-    private LocalTime time;
+    private Date time;
 
     @Field(name = "Date of booking")
-    private LocalDate dateOfBooking;
+    private Date dateOfBooking;
 
-    public Booking(String firstName, String lastName, String email, String lessonType, Integer hours, String location, LocalDate date, LocalTime time, LocalDate dateOfBooking) {
+    public Booking(String firstName,
+                   String lastName,
+                   String email,
+                   String lessonType,
+                   Integer hours,
+                   String location,
+                   Date date,
+                   Date time,
+                   Date dateOfBooking) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
