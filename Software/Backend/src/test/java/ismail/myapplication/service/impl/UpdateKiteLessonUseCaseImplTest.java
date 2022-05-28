@@ -1,10 +1,10 @@
 package ismail.myapplication.service.impl;
 
-import ismail.myapplication.service.kiteLesson.impl.UpdateKiteLessonUseCaseImpl;
 import ismail.myapplication.dto.kiteLesson.UpdateKiteLessonRequestDTO;
 import ismail.myapplication.exception.InvalidKiteLessonException;
 import ismail.myapplication.repository.KiteLessonRepository;
 import ismail.myapplication.repository.entity.kiteLesson.KiteLesson;
+import ismail.myapplication.service.kiteLesson.impl.UpdateKiteLessonUseCaseImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -13,9 +13,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 class UpdateKiteLessonUseCaseImplTest {

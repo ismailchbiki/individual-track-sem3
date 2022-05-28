@@ -1,13 +1,12 @@
 .Book {
-  text-align: center;
-  display: flex;
-  margin-top: 80px;
-  display: block;
+    text-align: center;
+    margin-top: 80px;
 }
+
 .form {
-  margin: auto;
+    margin: auto;
 }
 
 button {
-  margin: 20px;
+    margin: 20px;
 }

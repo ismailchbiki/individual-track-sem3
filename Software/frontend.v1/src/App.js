@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/layout/Header";
 import Homepage from "./components/layout/Homepage";
 import { Footer } from "./components/layout/Footer";
@@ -52,19 +52,8 @@ const App = () => {
                 />
               </Route>
 
-              {/* Manager Route */}
-              <Route
-                element={
-                  <RequireAuth
-                    allowedRoles={["SUPER_ADMIN", "ADMIN", "USER"]}
-                  />
-                }
-              >
-                <Route path="/api/v1/book" element={<Book />} />
-              </Route>
-
               {/* Public routes */}
-              {/* <Route path="/api/v1/book" element={<Book />} /> */}
+              <Route path="/api/v1/book" element={<Book />} />
               <Route path="/api/v1/register" element={<Register />} />
               <Route path="/api/v1/login" element={<Login />} />
 

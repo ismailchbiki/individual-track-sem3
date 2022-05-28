@@ -1,8 +1,8 @@
 package ismail.myapplication.service.impl;
 
-import ismail.myapplication.service.kiteLesson.impl.KiteLessonDTOConverter;
 import ismail.myapplication.dto.kiteLesson.KiteLessonDTO;
 import ismail.myapplication.repository.entity.kiteLesson.KiteLesson;
+import ismail.myapplication.service.kiteLesson.impl.KiteLessonDTOConverter;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -1,7 +1,7 @@
 package ismail.myapplication.controller;
 
-import ismail.myapplication.service.kiteLesson.*;
 import ismail.myapplication.dto.kiteLesson.*;
+import ismail.myapplication.service.kiteLesson.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,12 +21,12 @@ public class KiteLessonController {
     private final GetAllKiteLessonsUseCase getAllKiteLessonsUseCase;
 
     @GetMapping
-    public ResponseEntity<GetAllKiteLessonsResponseDTO> getAllKiteLessons(){
+    public ResponseEntity<GetAllKiteLessonsResponseDTO> getAllKiteLessons() {
         return new ResponseEntity(getAllKiteLessonsUseCase.getKiteLessons(), HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<KiteLessonDTO> getKiteLessonById(@PathVariable long id){
+    public ResponseEntity<KiteLessonDTO> getKiteLessonById(@PathVariable long id) {
         KiteLessonDTO kiteLessonDTO = getKiteLessonUseCase.getKiteLessonById(id);
 
         if (!ObjectUtils.isEmpty(kiteLessonDTO)) {
@@ -37,7 +37,7 @@ public class KiteLessonController {
     }
 
     @GetMapping("/type/{type}")
-    public ResponseEntity<KiteLessonDTO> getKiteLessonByType(@PathVariable String type){
+    public ResponseEntity<KiteLessonDTO> getKiteLessonByType(@PathVariable String type) {
 
         KiteLessonDTO kiteLessonDTO = getKiteLessonUseCase.getKiteLessonByType(type);
         if (kiteLessonDTO == null) {
@@ -47,13 +47,13 @@ public class KiteLessonController {
     }
 
     @PostMapping
-    public ResponseEntity<CreateKiteLessonResponseDTO> createKiteLesson(@RequestBody /* -> converts json to java object*/ CreateKiteLessonRequestDTO createRequestDTO){
+    public ResponseEntity<CreateKiteLessonResponseDTO> createKiteLesson(@RequestBody /* -> converts json to java object*/ CreateKiteLessonRequestDTO createRequestDTO) {
         CreateKiteLessonResponseDTO response = createKiteLessonUseCase.createKiteLesson(createRequestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<KiteLessonDTO> updateKiteLesson(@PathVariable("id") long id, @RequestBody UpdateKiteLessonRequestDTO request){
+    public ResponseEntity<KiteLessonDTO> updateKiteLesson(@PathVariable("id") long id, @RequestBody UpdateKiteLessonRequestDTO request) {
 
         request.setId(id);
         updateKiteLessonUseCase.updateKiteLesson(request);
@@ -61,7 +61,7 @@ public class KiteLessonController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteKiteLesson(@PathVariable long id){
+    public ResponseEntity<Void> deleteKiteLesson(@PathVariable long id) {
         deleteKiteLessonUseCase.deleteKiteLesson(id);
         return ResponseEntity.noContent().build();
     }

@@ -1,13 +1,15 @@
 package ismail.myapplication.repository.entity.kiteLesson;
 
 import lombok.*;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "kite_lesson")
 @Builder
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class KiteLesson {

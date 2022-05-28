@@ -21,6 +21,18 @@
       "place": "Noordwijk",
       "date": "2022-08-16",
       "time": "9:30"
+    },
+    {
+      "firstName": "Mike",
+      "lastName": "James",
+      "email": "mike@email.com",
+      "lessonType": "Group",
+      "hours": "14",
+      "location": "Katwijk",
+      "date": "2022-05-31",
+      "time": "18:43",
+      "dateOfBooking": "28-5-2022",
+      "id": 3
     }
   ]
 }

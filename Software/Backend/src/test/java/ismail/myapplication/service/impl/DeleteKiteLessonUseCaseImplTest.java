@@ -1,7 +1,7 @@
 package ismail.myapplication.service.impl;
 
-import ismail.myapplication.service.kiteLesson.impl.DeleteKiteLessonUseCaseImpl;
 import ismail.myapplication.repository.KiteLessonRepository;
+import ismail.myapplication.service.kiteLesson.impl.DeleteKiteLessonUseCaseImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
