@@ -3,6 +3,10 @@
     margin-top: 80px;
 }
 
+.Book label {
+    margin-bottom: 14px;
+}
+
 .form {
     margin: auto;
 }

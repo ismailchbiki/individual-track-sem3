@@ -6,6 +6,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/booking")
@@ -29,6 +33,12 @@ public class BookingController {
 
     @RequestMapping("/book-kite-lesson")
     public ResponseEntity<Booking> createBooking(@RequestBody Booking booking) {
+
+        Format formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        String dateOfBooking = formatter.format(new Date());
+
+        booking.setDateOfBooking(dateOfBooking);
+
         bookingRepository.save(booking);
         return ResponseEntity.ok(booking);
     }

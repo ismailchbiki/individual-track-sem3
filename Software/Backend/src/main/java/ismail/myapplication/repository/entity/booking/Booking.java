@@ -8,8 +8,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import java.util.Date;
-
 @Data
 @Builder
 @AllArgsConstructor
@@ -39,13 +37,13 @@ public class Booking {
     private String location;
 
     @Field(name = "Date")
-    private Date date;
+    private String date;
 
     @Field(name = "Time")
-    private Date time;
+    private String time;
 
     @Field(name = "Date of booking")
-    private Date dateOfBooking;
+    private String dateOfBooking;
 
     public Booking(String firstName,
                    String lastName,
@@ -53,9 +51,9 @@ public class Booking {
                    String lessonType,
                    Integer hours,
                    String location,
-                   Date date,
-                   Date time,
-                   Date dateOfBooking) {
+                   String date,
+                   String time,
+                   String dateOfBooking) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

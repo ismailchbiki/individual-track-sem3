@@ -1,16 +1,11 @@
 package ismail.myapplication;
 
-import ismail.myapplication.repository.BookingRepository;
-import ismail.myapplication.repository.entity.booking.Booking;
 import org.modelmapper.ModelMapper;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import java.util.Date;
 
 @SpringBootApplication
 public class MyApplication {
@@ -29,25 +24,41 @@ public class MyApplication {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    CommandLineRunner runner(BookingRepository bookingRepository) {
-        return args -> {
-            Booking booking = new Booking(
-                    "Ismail",
-                    "Chbiki",
-                    "ismail@email.com",
-                    "Private",
-                    10,
-                    "Duindorp",
-                    new Date(),
-                    new Date(),
-                    new Date()
-            );
-
-            //logic here to find by email
-            bookingRepository.save(booking);
-        };
-    }
+//    @Bean
+//    CommandLineRunner runner(BookingRepository bookingRepository) {
+//
+//        Date currentDate = new Date();
+//        Format formatterDate = new SimpleDateFormat("yyyy-MM-dd");
+//        Format formatterTime = new SimpleDateFormat("HH:mm");
+//
+//        Date date = new Date(2022, 07, 01, 10, 00);
+//
+//        //Lesson date
+//        String dateOfLesson = formatterDate.format(date);
+//
+//        //booking time
+//        String timeOfLesson = formatterTime.format(date);
+//
+//        //Date of booking
+//        String dateOfBooking = formatterDate.format(currentDate);
+//
+//        return args -> {
+//            Booking booking = new Booking(
+//                    "Ismail",
+//                    "Chbiki",
+//                    "ismail@email.com",
+//                    "Private",
+//                    10,
+//                    "Duindorp",
+//                    dateOfLesson,
+//                    timeOfLesson,
+//                    dateOfBooking
+//            );
+//
+//            //logic here to find by email
+//            bookingRepository.save(booking);
+//        };
+//    }
 
 //    @Bean
 //    CommandLineRunner run(UserService userService) {
