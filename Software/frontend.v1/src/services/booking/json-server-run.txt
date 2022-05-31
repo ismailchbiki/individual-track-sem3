@@ -1,7 +1,0 @@
-db.json file provides data to react app (backend replacement)
-
-This is the command to start json server:
-npx json-server --watch src/services/db.json --port 8000
-
-This is the endpoint to the json data:
-http://localhost:8000/kite-lessons

@@ -16,7 +16,7 @@ function Book() {
 
   const [count, setCount] = useState(1);
 
-  const processBooking = (e) => {
+  const processBooking = async (e) => {
     e.preventDefault();
 
     const booking = {
@@ -29,8 +29,6 @@ function Book() {
       date,
       time,
     };
-
-    // console.log(booking);
 
     makeBooking(booking)
       .then((response) => {
