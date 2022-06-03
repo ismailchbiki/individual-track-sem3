@@ -40,7 +40,9 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
         if (request.getServletPath().equals("/api/v1/user/login")
                 || request.getServletPath().equals("/api/v1/token/refresh")
                 || request.getServletPath().equals("/api/v1/user/save")
-                || request.getServletPath().equals("/api/v1/kite-lessons")) {
+                || request.getServletPath().equals("/api/v1/kite-lessons")
+                || request.getServletPath().equals("/ws")
+        ) {
             filterChain.doFilter(request, response);
         } else {
             //every time there is a request from the frontend to the backend,
@@ -65,9 +67,7 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
                     //we set them into the authentication context
                     Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
                     //conversion
-                    stream(roles).forEach(role -> {
-                        authorities.add(new SimpleGrantedAuthority(role));
-                    });
+                    stream(roles).forEach(role -> authorities.add(new SimpleGrantedAuthority(role)));
                     //calling Username and password token authentication
                     UsernamePasswordAuthenticationToken authenticationToken =
                             new UsernamePasswordAuthenticationToken(username, null, authorities);
