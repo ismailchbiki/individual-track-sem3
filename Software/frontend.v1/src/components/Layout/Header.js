@@ -30,12 +30,14 @@ const Header = () => {
                 Register
               </Link>
             </li>
-            <li className="nav-item">
-              <Link to={"/api/v1/login"} className="nav-link">
-                Login
-              </Link>
-            </li>
+            <li className="nav-item"></li>
           </ul>
+          <Link to={"/chatroom"} className="nav-link">
+            Chatroom
+          </Link>
+          <Link to={"/api/v1/login"} className="nav-link">
+            Login
+          </Link>
           {/* <span className="navbar-text">Item or button</span> */}
         </div>
       </div>

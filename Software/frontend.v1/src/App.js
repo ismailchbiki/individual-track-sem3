@@ -11,6 +11,7 @@ import Login from "./components/register&login/Login";
 import RequireAuth from "./components/register&login/RequireAuth";
 import UnauthorizedAccess from "./components/errorHandling/UnauthorizedAccess";
 import Layout from "./components/layout/Layout";
+import ChatRoom from "./components/chatroom/Chatroom";
 
 const App = () => {
   return (
@@ -56,6 +57,7 @@ const App = () => {
               <Route path="/api/v1/book" element={<Book />} />
               <Route path="/api/v1/register" element={<Register />} />
               <Route path="/api/v1/login" element={<Login />} />
+              <Route path="/chatroom" element={<ChatRoom />} />
 
               {/* Unauthorized access */}
               <Route path="/unauthorized" element={<UnauthorizedAccess />} />
