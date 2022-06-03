@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j /*log the output to the console*/
+@Slf4j
 public class GetAllKiteLessonsUseCaseImpl implements GetAllKiteLessonsUseCase {
 
     private final KiteLessonRepository kiteLessonRepository;

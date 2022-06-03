@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @NoArgsConstructor
-@Slf4j /*log the output to the console*/
+@Slf4j
 public class KiteLessonDTOConverter {
 
     public static KiteLessonDTO convertEntityToDTO(KiteLesson kiteLesson) {

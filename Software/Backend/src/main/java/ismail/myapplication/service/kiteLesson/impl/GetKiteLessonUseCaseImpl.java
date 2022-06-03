@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j /*log the output to the console*/
+@Slf4j
 public class GetKiteLessonUseCaseImpl implements GetKiteLessonUseCase {
 
     private final KiteLessonRepository kiteLessonRepository;

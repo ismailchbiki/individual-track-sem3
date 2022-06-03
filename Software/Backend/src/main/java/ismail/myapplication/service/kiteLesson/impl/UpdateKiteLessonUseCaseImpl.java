@@ -15,7 +15,7 @@ import java.util.Optional;
 @Transactional
 @Service
 @RequiredArgsConstructor
-@Slf4j /*log the output to the console*/
+@Slf4j
 public class UpdateKiteLessonUseCaseImpl implements UpdateKiteLessonUseCase {
 
     private final KiteLessonRepository kiteLessonRepository;

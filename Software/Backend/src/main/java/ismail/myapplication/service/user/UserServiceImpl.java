@@ -22,7 +22,7 @@ import java.util.List;
 
 @Service
 @Transactional
-@Slf4j /*log the output to the console*/
+@Slf4j
 @RequiredArgsConstructor/*(onConstructor = @__(@Lazy))*/
 public class UserServiceImpl implements UserService, UserDetailsService {
 
@@ -45,9 +45,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         //looping over all the roles of this user,
         //and for every single role of them,
         //create a SimpleGrantAuthority by passing the role name and add it to the list
-        user.getRoles().forEach(role -> {
-            authorities.add(new SimpleGrantedAuthority(role.getName()));
-        });
+        user.getRoles().forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getName())));
 
         //then pass everything to spring security
         return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), authorities);
@@ -55,7 +53,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public UserDTO saveUser(UserDTO userDTO) {
-        log.info("saving the user {} {} to the DB", userDTO.getEmail());
+        log.info("saving the user {} to the DB", userDTO.getEmail());
         userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
 
         User user = User.builder()
@@ -111,10 +109,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public List<UserDTO> getUsers() {
         log.info("Fetching all users");
 
-        List<UserDTO> usersDTO = userRepository.findAll()
+        return userRepository.findAll()
                 .stream()
                 .map(UserDTOConverter::convertEntityToDTO)
                 .toList();
-        return usersDTO;
     }
 }

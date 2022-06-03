@@ -15,7 +15,7 @@ import javax.transaction.Transactional;
 @Transactional
 @Service
 @RequiredArgsConstructor
-@Slf4j /*log the output to the console*/
+@Slf4j
 public class CreateKiteLessonUseCaseImpl implements CreateKiteLessonUseCase {
 
     private final KiteLessonRepository kiteLessonRepository;
