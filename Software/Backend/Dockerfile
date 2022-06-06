@@ -1,6 +1,4 @@
-#Define base docker image
 FROM openjdk:17
-LABEL maintainer="spring-docker-image-maintainer"
-#copy the jar file to the docker image
-ADD build/libs/Individual-Track-Project-0.0.1-SNAPSHOT.jar springboot-docker-image.jar
-ENTRYPOINT ["java", "-jar", "springboot-docker-image.jar"]
+ADD build/libs/individual-track-spring-backend-0.0.1-SNAPSHOT.jar individual-track-spring-backend.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "individual-track-spring-backend.jar"]
