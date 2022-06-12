@@ -48,7 +48,7 @@ class KiteLessonControllerTest {
                 .build();
         when(getKiteLessonUseCase.getKiteLessonById(10L)).thenReturn(kiteLessonDTO);
 
-        mockMvc.perform(get("/api/v1/kite-lessons/10"))
+        mockMvc.perform(get("/kite-lessons/10"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(header().string("Content-Type", APPLICATION_JSON_VALUE))
@@ -83,7 +83,7 @@ class KiteLessonControllerTest {
 
         when(getAllKiteLessonsUseCase.getKiteLessons()).thenReturn(responseDTO);
 
-        mockMvc.perform(get("/api/v1/kite-lessons"))
+        mockMvc.perform(get("/kite-lessons"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(header().string("Content-Type", APPLICATION_JSON_VALUE))
@@ -101,7 +101,7 @@ class KiteLessonControllerTest {
 
     @Test
     void deleteKiteLesson_shouldReturn204() throws Exception {
-        mockMvc.perform(delete("/api/v1/kite-lessons/20"))
+        mockMvc.perform(delete("/kite-lessons/20"))
                 .andDo(print())
                 .andExpect(status().isNoContent());
 
@@ -121,7 +121,7 @@ class KiteLessonControllerTest {
                         .kiteLessonId(30L)
                         .build());
 
-        mockMvc.perform(post("/api/v1/kite-lessons")
+        mockMvc.perform(post("/kite-lessons")
                         .contentType(APPLICATION_JSON_VALUE)
                         .content("""
                                 {
@@ -142,7 +142,7 @@ class KiteLessonControllerTest {
 
     @Test
     void updateKiteLesson_shouldReturn204() throws Exception {
-        mockMvc.perform(put("/api/v1/kite-lessons/44")
+        mockMvc.perform(put("/kite-lessons/44")
                         .contentType(APPLICATION_JSON_VALUE)
                         .content("""
                                 {

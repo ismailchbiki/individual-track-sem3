@@ -33,7 +33,7 @@ function Book() {
     makeBooking(booking)
       .then((response) => {
         console.log(response.data);
-        // navigate("/api/v1/kite-lessons");
+        // navigate("/kite-lessons");
 
         alert(
           `\nBooking made successfully.\n\nYour booking number: ${response.data.id}`

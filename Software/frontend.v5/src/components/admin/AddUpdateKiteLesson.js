@@ -23,13 +23,13 @@ export const AddUpdateKiteLesson = () => {
 
     if (id) {
       updateKiteLesson(id, kiteLesson)
-        .then(navigate("/api/v1/kite-lessons"))
+        .then(navigate("/kite-lessons"))
         .catch((error) => {
           console.log(error);
         });
     } else {
       createKiteLesson(kiteLesson)
-        .then(navigate("/api/v1/kite-lessons"))
+        .then(navigate("/kite-lessons"))
         .catch((error) => {
           console.log(error);
         });
@@ -127,7 +127,7 @@ export const AddUpdateKiteLesson = () => {
                 </button> */}
 
                 {/* same as previous code */}
-                <Link to="/api/v1/kite-lessons" className="btn btn-danger m-2">
+                <Link to="/kite-lessons" className="btn btn-danger m-2">
                   Cancel
                 </Link>
               </form>

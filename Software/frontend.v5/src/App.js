@@ -31,16 +31,13 @@ const App = () => {
                 }
               >
                 {/* Manager Route */}
-                <Route
-                  path="/api/v1/kite-lessons"
-                  element={<KiteLessonsList />}
-                />
+                <Route path="/kite-lessons" element={<KiteLessonsList />} />
               </Route>
 
               {/* Manager Route */}
               <Route element={<RequireAuth allowedRoles={["SUPER_ADMIN"]} />}>
                 <Route
-                  path="/api/v1/add-kite-lesson"
+                  path="/add-kite-lesson"
                   element={<AddUpdateKiteLesson />}
                 />
               </Route>
@@ -48,15 +45,15 @@ const App = () => {
               {/* Manager Route */}
               <Route element={<RequireAuth allowedRoles={["SUPER_ADMIN"]} />}>
                 <Route
-                  path="/api/v1/update-kite-lesson/:id"
+                  path="/update-kite-lesson/:id"
                   element={<AddUpdateKiteLesson />}
                 />
               </Route>
 
               {/* Public routes */}
-              <Route path="/api/v1/book" element={<Book />} />
-              <Route path="/api/v1/register" element={<Register />} />
-              <Route path="/api/v1/login" element={<Login />} />
+              <Route path="/book" element={<Book />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
               <Route path="/chatroom" element={<ChatRoom />} />
 
               {/* Unauthorized access */}

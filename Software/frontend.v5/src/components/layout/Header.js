@@ -16,17 +16,17 @@ const Header = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to={"/api/v1/book"} className="nav-link">
+              <Link to={"/book"} className="nav-link">
                 Book
               </Link>
             </li>
             <li className="nav-item">
-              <Link to={"/api/v1/kite-lessons"} className="nav-link">
+              <Link to={"/kite-lessons"} className="nav-link">
                 Admin
               </Link>
             </li>
             <li className="nav-item">
-              <Link to={"/api/v1/register"} className="nav-link">
+              <Link to={"/register"} className="nav-link">
                 Register
               </Link>
             </li>
@@ -35,7 +35,7 @@ const Header = () => {
           <Link to={"/chatroom"} className="nav-link">
             Chatroom
           </Link>
-          <Link to={"/api/v1/login"} className="nav-link">
+          <Link to={"/login"} className="nav-link">
             Login
           </Link>
           {/* <span className="navbar-text">Item or button</span> */}

@@ -39,7 +39,7 @@ export const KiteLessonsList = () => {
       <h2 className="text-center" style={{ marginTop: "15px" }}>
         Kite Lessons List
       </h2>
-      <Link to="/api/v1/add-kite-lesson" className="btn btn-primary mb-2">
+      <Link to="/add-kite-lesson" className="btn btn-primary mb-2">
         Add Kite Lesson
       </Link>
       <table className="table table-bordered table-striped">
@@ -75,7 +75,7 @@ export const KiteLessonsList = () => {
                     <button
                       className="btn btn-info"
                       onClick={() =>
-                        navigate(`/api/v1/update-kite-lesson/${lesson.id}`)
+                        navigate(`/update-kite-lesson/${lesson.id}`)
                       }
                     >
                       Update

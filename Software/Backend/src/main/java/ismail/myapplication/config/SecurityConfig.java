@@ -37,35 +37,35 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { //overriding 
     protected void configure(HttpSecurity http) throws Exception {
         //over-writing the default permitted url (/login) with a custom one
         CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(authenticationManagerBean());
-        customAuthenticationFilter.setFilterProcessesUrl("/api/v1/user/login");
+        customAuthenticationFilter.setFilterProcessesUrl("/users/user/login");
 
         http.csrf().disable();
 
         //allowed cors origins
         http.cors().configurationSource(request -> {
             var cors = new CorsConfiguration();
-            cors.setAllowedOrigins(List.of("http://localhost:3000", "http://127.0.0.1:80"));
+            cors.setAllowedOrigins(List.of("http://localhost:3000"));
             cors.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
             cors.setAllowedHeaders(List.of("*"));
             return cors;
         });
         http.sessionManagement().sessionCreationPolicy(STATELESS);
         //allowed paths
-        http.authorizeRequests().antMatchers("/api/v1/user/**", "/api/v1/token/refresh/**", "/booking/**").permitAll();
+        http.authorizeRequests().antMatchers("/users/user/**", "/users/token/refresh/**", "/booking/**").permitAll();
         //permit to only these user roles
-        http.authorizeRequests().antMatchers(GET, "/api/v1/user/**").hasAnyAuthority("ROLE_USER", "ROLE_MANAGER", "ROLE_MANAGER", "ROLE_SUPER_ADMIN");
+        http.authorizeRequests().antMatchers(GET, "/users/user/**").hasAnyAuthority("ROLE_USER", "ROLE_MANAGER", "ROLE_MANAGER", "ROLE_SUPER_ADMIN");
         //http.authorizeRequests().antMatchers(POST, "/api/v1/user/save/**").hasAnyAuthority("ROLE_ADMIN");
         //registering
-        http.authorizeRequests().antMatchers(POST, "/api/v1/user/save/**").permitAll();
+        http.authorizeRequests().antMatchers(POST, "/users/user/save/**").permitAll();
         //adding role to user
-        http.authorizeRequests().antMatchers(POST, "/api/v1/role/**").permitAll();
+        http.authorizeRequests().antMatchers(POST, "/users/role/**").permitAll();
         //login
-        http.authorizeRequests().antMatchers(POST, "/api/v1/user/login/**").permitAll();
+        http.authorizeRequests().antMatchers(POST, "/users/user/login/**").permitAll();
         //kiteLesson controller (permitted now for testing to pass)
-        http.authorizeRequests().antMatchers(POST, "/api/v1/kite-lessons/**").permitAll();
-        http.authorizeRequests().antMatchers(GET, "/api/v1/kite-lessons/**").permitAll();
-        http.authorizeRequests().antMatchers(PUT, "/api/v1/kite-lessons/**").permitAll();
-        http.authorizeRequests().antMatchers(DELETE, "/api/v1/kite-lessons/**").permitAll();
+        http.authorizeRequests().antMatchers(POST, "/kite-lessons/**").permitAll();
+        http.authorizeRequests().antMatchers(GET, "/kite-lessons/**").permitAll();
+        http.authorizeRequests().antMatchers(PUT, "/kite-lessons/**").permitAll();
+        http.authorizeRequests().antMatchers(DELETE, "/kite-lessons/**").permitAll();
 
         //booking controller
         http.authorizeRequests().antMatchers(POST, "/booking/**").permitAll();
