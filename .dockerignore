@@ -1,0 +1,6 @@
+Node_modules
+Npm-debug.log
+.dockerigonre
+**/.git
+**/.DS_Store
+**/.node_modules
