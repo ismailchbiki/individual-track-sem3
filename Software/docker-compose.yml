@@ -6,6 +6,8 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./Backend:/Backend/backend
+    ports:
+      - 8080:8080
     image: backend:springboot
     container_name: spring_container
     command: java -jar ./Backend/build/libs/individual-track-spring-backend-0.0.1-SNAPSHOT.jar
@@ -20,3 +22,5 @@ services:
     image: frontend:react
     container_name: react_container
     command: npm start
+
+#is docker compose dependenent on Dockerfile?
