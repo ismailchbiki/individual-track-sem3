@@ -1,20 +1,18 @@
 const Homepage = () => {
   return (
     <div>
-      <h1
+      <img
         style={{
-          marginTop: "30px",
-          textAlign: "center",
-          font: "icon",
-          fontSize: "37px",
+          display: "block",
+          width: "100%",
+          height: "60vh",
+          marginTop: "5vh",
+          marginLeft: "auto",
+          marginRight: "auto",
         }}
-      >
-        Homepage
-      </h1>
-      <p style={{ textAlign: "center", marginTop: "4vh", fontSize: "3vh" }}>
-        There is not much here because this page will hold static data so it is
-        the least priority for the time being.
-      </p>
+        src="https://th.bing.com/th/id/R.ec91a5e193e02dd934308a24806404d0?rik=GySzcHiI7WmTgg&riu=http%3a%2f%2fwww.progression.me%2fwp-content%2fuploads%2f2017%2f08%2fblog-lessons-expect-Facebook.jpg&ehk=SAXfrm0nMoCdtkipZeC1AEsku78ZlZ02sTWL1InxcKU%3d&risl=&pid=ImgRaw&r=0"
+        alt=""
+      />
     </div>
   );
 };
