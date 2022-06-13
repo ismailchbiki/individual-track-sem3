@@ -7,7 +7,6 @@ import {
 } from "../../services/admin/KiteLessonAPI";
 
 export const AddUpdateKiteLesson = () => {
-  //fields must match fields from the api (Springboot)
   const [type, setType] = useState("");
   const [persons, setPersons] = useState("");
   const [hours, setHours] = useState("");
@@ -16,7 +15,6 @@ export const AddUpdateKiteLesson = () => {
   const { id } = useParams();
 
   const saveOrUpdateKiteLesson = async (e) => {
-    //prevent the page from reloading/refreshing
     e.preventDefault();
 
     const kiteLesson = { type, persons, hours, price };

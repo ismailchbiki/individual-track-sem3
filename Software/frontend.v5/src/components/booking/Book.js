@@ -16,6 +16,13 @@ function Book() {
 
   const [count, setCount] = useState(1);
 
+  const increment = (e) => {
+    e.preventDefault();
+
+    count === 1 && firstName && lastName && email && setCount(count + 1);
+    count === 2 && hours && location && setCount(count + 1);
+  };
+
   const processBooking = async (e) => {
     e.preventDefault();
 
@@ -30,19 +37,21 @@ function Book() {
       time,
     };
 
-    makeBooking(booking)
-      .then((response) => {
-        console.log(response.data);
-        // navigate("/kite-lessons");
+    date &&
+      time &&
+      makeBooking(booking)
+        .then((response) => {
+          console.log(response.data);
+          // navigate("/kite-lessons");
 
-        alert(
-          `\nBooking made successfully.\n\nYour booking number: ${response.data.id}`
-        );
-        setCount(1);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+          alert(
+            `\nBooking made successfully.\n\nYour booking number: ${response.data.id}`
+          );
+          setCount(1);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
   };
 
   const updateForm = (e) => {
@@ -207,7 +216,7 @@ function Book() {
         <button
           className="btn btn-light"
           type="submit"
-          onClick={() => setCount(count + 1)}
+          onClick={(e) => increment(e)}
           disabled={count > 2}
         >
           Next

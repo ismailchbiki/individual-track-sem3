@@ -1,7 +1,7 @@
 //auto-completion from cypress library
 /// <reference types="cypress" />
 
-describe("Home Page Test", () => {
+describe("Header components Test", () => {
   //from mocha
   it("Clicks an element", () => {
     cy.visit("localhost:3000");
@@ -17,6 +17,9 @@ describe("Home Page Test", () => {
 
     cy.contains("Chatroom").click();
     cy.url().should("include", "/chatroom");
+
+    cy.contains("Login").click();
+    cy.url().should("include", "/login");
 
     cy.contains("Register").click();
     cy.url().should("include", "/register");
