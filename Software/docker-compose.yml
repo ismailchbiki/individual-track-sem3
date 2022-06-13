@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  app:
+    build:
+      context: ./frontend.v5
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend.v5:/frontend.v5/frontend
+    ports:
+      - 3000:3000
+    image: app:react
+    container_name: react_container
+    command: npm start
