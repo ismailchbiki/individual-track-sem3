@@ -1,6 +1,15 @@
 version: "3.8"
 services:
-  app:
+  backend:
+    build:
+      context: ./Backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./Backend:/Backend/backend
+    image: backend:springboot
+    container_name: spring_container
+    command: java -jar ./Backend/build/libs/individual-track-spring-backend-0.0.1-SNAPSHOT.jar
+  frontend:
     build:
       context: ./frontend.v5
       dockerfile: Dockerfile
@@ -8,6 +17,6 @@ services:
       - ./frontend.v5:/frontend.v5/frontend
     ports:
       - 3000:3000
-    image: app:react
+    image: frontend:react
     container_name: react_container
     command: npm start
