@@ -3,6 +3,7 @@
 
 ### .gitignore ###
 .gitignore
+.dockerigonre
 
 ### STS ###
 .apt_generated
