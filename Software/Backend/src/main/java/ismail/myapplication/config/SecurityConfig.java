@@ -21,7 +21,8 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class SecurityConfig extends WebSecurityConfigurerAdapter { //overriding certain methods to provide our custom security configuration instead of the default one
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    //overriding certain methods to provide our custom security configuration instead of the default one
     private final UserDetailsService userDetailsService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -40,7 +41,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { //overriding 
         customAuthenticationFilter.setFilterProcessesUrl("/users/user/login");
 
         http.csrf().disable();
-
         //allowed cors origins
         http.cors().configurationSource(request -> {
             var cors = new CorsConfiguration();
@@ -52,15 +52,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { //overriding 
         http.sessionManagement().sessionCreationPolicy(STATELESS);
         //allowed paths
         http.authorizeRequests().antMatchers("/users/user/**", "/users/token/refresh/**", "/booking/**").permitAll();
-        //permit to only these user roles
-        http.authorizeRequests().antMatchers(GET, "/users/user/**").hasAnyAuthority("ROLE_USER", "ROLE_MANAGER", "ROLE_MANAGER", "ROLE_SUPER_ADMIN");
-        //http.authorizeRequests().antMatchers(POST, "/api/v1/user/save/**").hasAnyAuthority("ROLE_ADMIN");
-        //registering
+        http.authorizeRequests().antMatchers(GET, "/users/user/**")
+                .hasAnyAuthority("ROLE_USER", "ROLE_MANAGER", "ROLE_MANAGER", "ROLE_SUPER_ADMIN");
         http.authorizeRequests().antMatchers(POST, "/users/user/save/**").permitAll();
-        //adding role to user
         http.authorizeRequests().antMatchers(POST, "/users/role/**").permitAll();
-        //login
         http.authorizeRequests().antMatchers(POST, "/users/user/login/**").permitAll();
+
         //kiteLesson controller (permitted now for testing to pass)
         http.authorizeRequests().antMatchers(POST, "/kite-lessons/**").permitAll();
         http.authorizeRequests().antMatchers(GET, "/kite-lessons/**").permitAll();
@@ -72,11 +69,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { //overriding 
         http.authorizeRequests().antMatchers(GET, "/booking/all-bookings/**").permitAll();
         http.authorizeRequests().antMatchers(PUT, "/booking/update-booking/**").permitAll();
         http.authorizeRequests().antMatchers(DELETE, "/booking/cancel-booking/**").permitAll();
-
-        //chatroom
-        //        http.httpBasic().disable();
-        http.authorizeRequests().antMatchers(POST, "/ws/**").permitAll();
-        http.authorizeRequests().antMatchers(GET, "/ws/**").permitAll();
 
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(customAuthenticationFilter);
