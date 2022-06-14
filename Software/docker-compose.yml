@@ -7,10 +7,13 @@ services:
     volumes:
       - ./Backend:/Backend/backend
     ports:
-      - 8080:8080
+      - "8080:8080"
     image: backend:springboot
     container_name: spring_container
     command: java -jar ./Backend/build/libs/individual-track-spring-backend-0.0.1-SNAPSHOT.jar
+    depends_on:
+      - mongodb
+      - sql-server-db
   frontend:
     build:
       context: ./frontend.v5
@@ -18,10 +21,23 @@ services:
     volumes:
       - ./frontend.v5:/frontend.v5/frontend
     ports:
-      - 3000:3000
+      - "3000:3000"
     image: frontend:react
     container_name: react_container
     command: npm start
+    depends_on:
+      - backend
+  sql-server-db:
+    platform: linux/amd64
+    image: mysql:latest
+    container_name: sql_server_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - data:/data
+    environment:
+      - ACCEPT_EULA=Y
+      - MYSQL_ROOT_PASSWORD=ismail
   mongodb:
     image: mongo
     container_name: mongodb
