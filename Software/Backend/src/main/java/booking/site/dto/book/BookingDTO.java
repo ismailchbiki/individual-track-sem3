@@ -1,4 +1,4 @@
-package booking.site.dto.booking;
+package booking.site.dto.book;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

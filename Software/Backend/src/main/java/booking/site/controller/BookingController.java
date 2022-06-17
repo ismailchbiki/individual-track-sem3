@@ -1,7 +1,7 @@
 package booking.site.controller;
 
-import booking.site.dto.booking.BookingDTO;
-import booking.site.service.booking.BookingUseCase;
+import booking.site.dto.book.BookingDTO;
+import booking.site.service.book.BookingUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

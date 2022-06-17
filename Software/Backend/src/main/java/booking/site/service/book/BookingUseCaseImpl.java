@@ -1,6 +1,6 @@
-package booking.site.service.booking;
+package booking.site.service.book;
 
-import booking.site.dto.booking.BookingDTO;
+import booking.site.dto.book.BookingDTO;
 import booking.site.exception.InvalidBookingException;
 import booking.site.exception.ResourceNotFoundException;
 import booking.site.repository.BookingRepository;
