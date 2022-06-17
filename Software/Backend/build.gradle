@@ -3,6 +3,7 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
     id "org.sonarqube" version "3.3"
+    id "jacoco"
 }
 
 group = 'ismail'
@@ -17,7 +18,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client:2.6.7'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client:2.7.0'
     implementation 'org.springframework.boot:spring-boot-starter-websocket'
     implementation 'com.auth0:java-jwt:3.19.2'
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -35,7 +36,28 @@ dependencies {
     implementation 'org.modelmapper:modelmapper:3.1.0'
 }
 
-
 tasks.named('test') {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.enabled = true
+        html.enabled = true
+        csv.enabled = true
+    }
+    finalizedBy jacocoTestCoverageVerification
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            enabled = false
+            limit {
+                minimum = 0.45
+            }
+        }
+    }
 }
