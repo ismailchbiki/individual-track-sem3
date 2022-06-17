@@ -2,6 +2,7 @@ stages:
   - build
   - test
   - sonar
+  - deploy
 
 build:
   stage: build
@@ -21,8 +22,8 @@ sonar:
     - cd Software/Backend
     - gradle sonarqube -D "sonar.projectKey=Individual-Track-Project" -D "sonar.host.url=http://localhost:9000" -D "sonar.login=f62fc0ab5c799818d2f1e3d5a52778e1591f0cbd"
 
-docker-compose:
-  stage: docker-compose
+deploy:
+  stage: deploy
   script:
     - cd Software
     - docker-compose up -d
