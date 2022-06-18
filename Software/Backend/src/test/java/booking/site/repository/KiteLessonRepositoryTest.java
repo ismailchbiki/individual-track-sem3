@@ -66,7 +66,6 @@ class KiteLessonRepositoryTest {
                 .build());
 
         KiteLesson actualKiteLesson = kiteLessonRepository.findByType("prive");
-
         assertNotNull(actualKiteLesson.getId());
         KiteLesson expectedKiteLesson = KiteLesson.builder()
                 .type("prive")
@@ -82,7 +81,7 @@ class KiteLessonRepositoryTest {
 
     @Test
     void findByType_shouldReturnNull_whenKiteLessonNotFound() {
-        KiteLesson actualKiteLesson = kiteLessonRepository.findByType("null");
+        KiteLesson actualKiteLesson = kiteLessonRepository.findByType("prive");
         assertNull(actualKiteLesson);
     }
 

@@ -17,5 +17,6 @@ public class UserDTO {
     private Long id;
     private String email;
     private String password;
+    @Builder.Default
     private Collection<Role> roles = new ArrayList<>();
 }

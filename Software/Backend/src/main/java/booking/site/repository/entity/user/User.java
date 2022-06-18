@@ -24,6 +24,7 @@ public class User {
     private String email;
     @Column(name = "password", nullable = false)
     private String password;
+    @Builder.Default
     @ManyToMany(fetch = EAGER)
     private Collection<Role> roles = new ArrayList<>();
 }
