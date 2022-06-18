@@ -38,7 +38,7 @@ const Login = () => {
     const user = { username, password };
     try {
       const response = await loginUser(user);
-      const accessToken = response?.data.access_token;
+      const accessToken = response?.data.accessToken;
 
       //decoding the token
       const payload = jwt(accessToken);
