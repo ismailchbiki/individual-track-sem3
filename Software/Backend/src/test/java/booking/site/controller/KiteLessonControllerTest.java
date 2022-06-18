@@ -59,18 +59,18 @@ class KiteLessonControllerTest {
         verify(getKiteLessonUseCase).getKiteLessonById(10L);
     }
 
-//    @Test
-//    void getKiteLesson_shouldReturn404Error_whenKiteLessonNotFound() throws Exception {
-//
-//        KiteLessonDTO kiteLessonDTO = KiteLessonDTO.builder().build();
-//        when(getKiteLessonUseCase.getKiteLessonById(10L)).thenReturn(kiteLessonDTO);
-//
-//        mockMvc.perform(get("/api/v1/kite-lessons/10"))
-//                .andDo(print())
-//                .andExpect(status().isNotFound());
-//
-//        verify(getKiteLessonUseCase).getKiteLessonById(10L);
-//    }
+    @Test
+    void getKiteLesson_shouldReturn404Error_whenKiteLessonNotFound() throws Exception {
+
+        KiteLessonDTO kiteLessonDTO = KiteLessonDTO.builder().build();
+        when(getKiteLessonUseCase.getKiteLessonById(10L)).thenReturn(kiteLessonDTO);
+
+        mockMvc.perform(get("/kite-lessons/10"))
+                .andDo(print())
+                .andExpect(status().isNotFound());
+
+        verify(getKiteLessonUseCase).getKiteLessonById(10L);
+    }
 
     @Test
     void getAllKiteLessons_shouldReturn200WithAllKiteLessonsList_WhenNoFilterProvided() throws Exception {

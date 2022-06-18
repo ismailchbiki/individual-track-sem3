@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 @Entity
 @Table(name = "kite_lesson")
@@ -33,4 +34,17 @@ public class KiteLesson {
     @NotNull
     @Column(name = "lesson_price")
     private Double price;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        KiteLesson that = (KiteLesson) o;
+        return Objects.equals(type, that.type) && Objects.equals(hours, that.hours) && Objects.equals(persons, that.persons) && Objects.equals(price, that.price);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(type, hours, persons, price);
+    }
 }

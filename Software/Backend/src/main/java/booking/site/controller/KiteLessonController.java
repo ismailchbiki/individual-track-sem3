@@ -5,7 +5,6 @@ import booking.site.service.kite_lesson.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -29,7 +28,7 @@ public class KiteLessonController {
     public ResponseEntity<KiteLessonDTO> getKiteLessonById(@PathVariable long id) {
         KiteLessonDTO kiteLessonDTO = getKiteLessonUseCase.getKiteLessonById(id);
 
-        if (!ObjectUtils.isEmpty(kiteLessonDTO)) {
+        if (kiteLessonDTO.getId() != null) {
             return ResponseEntity.ok().body(kiteLessonDTO);
         }
 
