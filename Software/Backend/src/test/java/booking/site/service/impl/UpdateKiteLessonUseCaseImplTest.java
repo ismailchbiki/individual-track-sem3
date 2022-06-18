@@ -24,7 +24,7 @@ class UpdateKiteLessonUseCaseImplTest {
     private UpdateKiteLessonUseCaseImpl updateKiteLessonUseCase;
 
     @Test
-    void shouldUpdateAllStudentFields() {
+    void shouldUpdateAllKiteLessonFields() {
         KiteLesson kiteLessonBeforeUpdate = KiteLesson.builder()
                 .id(1L)
                 .type("prv")

@@ -22,7 +22,6 @@ class KiteLessonRepositoryTest {
     @Autowired
     private KiteLessonRepository kiteLessonRepository;
 
-
     @Test
     void save_shouldSaveKiteLessonWithAllFields() {
 

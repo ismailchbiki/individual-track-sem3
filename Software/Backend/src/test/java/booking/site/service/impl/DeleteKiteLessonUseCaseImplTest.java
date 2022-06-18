@@ -20,7 +20,7 @@ class DeleteKiteLessonUseCaseImplTest {
     private DeleteKiteLessonUseCaseImpl deleteKiteLessonUseCase;
 
     @Test
-    void shouldDeleteStudent() {
+    void shouldDeleteKiteLesson() {
         deleteKiteLessonUseCase.deleteKiteLesson(10L);
 
         verify(kiteLessonRepositoryMock).deleteById(10L);
