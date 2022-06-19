@@ -20,7 +20,7 @@ sonar:
   stage: sonar
   script:
     - cd Software/Backend
-    - gradle sonarqube -D "sonar.projectKey=Individual-Track-Spring" -D "sonar.host.url=http://localhost:9000" -D "sonar.login=sqp_fc8f1cbde5e3c1eb6b418ccf759895cd38a00e77"
+    - gradle sonarqube -D "sonar.projectKey=Individual-Track-Springboot" -D "sonar.host.url=http://localhost:9000" -D "sonar.login=sqp_227106a49801bb7a81851020ec16ca3b48a00621"
 
 deploy:
   stage: deploy

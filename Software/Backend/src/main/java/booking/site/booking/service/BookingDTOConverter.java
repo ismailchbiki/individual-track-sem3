@@ -1,8 +1,10 @@
 package booking.site.booking.service;
 
+import booking.site.annotation.Generated;
 import booking.site.booking.dto.BookingDTO;
 import booking.site.booking.entity.Booking;
 
+@Generated
 public class BookingDTOConverter {
 
     private BookingDTOConverter() {

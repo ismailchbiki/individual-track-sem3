@@ -1,9 +1,11 @@
 package booking.site.kitelesson.service.impl;
 
+import booking.site.annotation.Generated;
 import booking.site.kitelesson.dto.KiteLessonDTO;
 import booking.site.kitelesson.entity.KiteLesson;
 import lombok.extern.slf4j.Slf4j;
 
+@Generated
 @Slf4j
 public class KiteLessonDTOConverter {
 

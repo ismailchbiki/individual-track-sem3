@@ -10,8 +10,8 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Document(collection = "booking")
 public class Booking {
     @Id
