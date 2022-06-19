@@ -1,7 +1,7 @@
 package booking.site.kitelesson.service.impl;
 
 import booking.site.exception.ResourceNotFoundException;
-import booking.site.kitelesson.dto.UpdateKiteLessonRequestDTO;
+import booking.site.kitelesson.dto.CreateKiteLessonRequestDTO;
 import booking.site.kitelesson.entity.KiteLesson;
 import booking.site.kitelesson.repository.KiteLessonRepository;
 import booking.site.kitelesson.service.UpdateKiteLessonUseCase;
@@ -21,7 +21,7 @@ public class UpdateKiteLessonUseCaseImpl implements UpdateKiteLessonUseCase {
     private final KiteLessonRepository kiteLessonRepository;
 
     @Override
-    public void updateKiteLesson(UpdateKiteLessonRequestDTO request) {
+    public void updateKiteLesson(CreateKiteLessonRequestDTO request) {
 
         Optional<KiteLesson> existingOptionalKiteLesson = kiteLessonRepository.findById(request.getId());
         if (existingOptionalKiteLesson.isEmpty()) {
@@ -32,7 +32,7 @@ public class UpdateKiteLessonUseCaseImpl implements UpdateKiteLessonUseCase {
         updateFields(request, kiteLesson);
     }
 
-    private void updateFields(UpdateKiteLessonRequestDTO request, KiteLesson kiteLesson) {
+    private void updateFields(CreateKiteLessonRequestDTO request, KiteLesson kiteLesson) {
 
         kiteLesson.setType(request.getType());
         kiteLesson.setHours(request.getHours());

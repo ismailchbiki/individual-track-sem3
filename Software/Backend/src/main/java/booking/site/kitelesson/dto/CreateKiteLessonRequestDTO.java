@@ -15,6 +15,7 @@ import javax.validation.constraints.Positive;
 @AllArgsConstructor
 public class CreateKiteLessonRequestDTO {
 
+    private Long id;
     @NotEmpty
     @Length(max = 20)
     @Length(min = 2)

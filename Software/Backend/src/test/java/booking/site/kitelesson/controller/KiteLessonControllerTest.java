@@ -1,6 +1,9 @@
 package booking.site.kitelesson.controller;
 
-import booking.site.kitelesson.dto.*;
+import booking.site.kitelesson.dto.CreateKiteLessonRequestDTO;
+import booking.site.kitelesson.dto.CreateKiteLessonResponseDTO;
+import booking.site.kitelesson.dto.GetAllKiteLessonsResponseDTO;
+import booking.site.kitelesson.dto.KiteLessonDTO;
 import booking.site.kitelesson.service.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -155,7 +158,7 @@ class KiteLessonControllerTest {
                 .andDo(print())
                 .andExpect(status().isNoContent());
 
-        UpdateKiteLessonRequestDTO expectedRequest = UpdateKiteLessonRequestDTO.builder()
+        CreateKiteLessonRequestDTO expectedRequest = CreateKiteLessonRequestDTO.builder()
                 .id(44L)
                 .type("prv")
                 .persons(1)

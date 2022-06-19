@@ -1,6 +1,6 @@
 package booking.site.kitelesson.service;
 
-import booking.site.kitelesson.dto.UpdateKiteLessonRequestDTO;
+import booking.site.kitelesson.dto.CreateKiteLessonRequestDTO;
 import booking.site.kitelesson.entity.KiteLesson;
 import booking.site.kitelesson.repository.KiteLessonRepository;
 import booking.site.kitelesson.service.impl.UpdateKiteLessonUseCaseImpl;
@@ -34,7 +34,7 @@ class UpdateKiteLessonUseCaseImplTest {
                 .build();
         when(kiteLessonRepositoryMock.findById(1L)).thenReturn(Optional.of(kiteLessonBeforeUpdate));
 
-        UpdateKiteLessonRequestDTO request = UpdateKiteLessonRequestDTO.builder()
+        CreateKiteLessonRequestDTO request = CreateKiteLessonRequestDTO.builder()
                 .id(1L)
                 .type("semi-prv")
                 .persons(2)

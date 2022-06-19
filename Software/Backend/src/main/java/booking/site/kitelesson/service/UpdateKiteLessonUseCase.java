@@ -1,7 +1,7 @@
 package booking.site.kitelesson.service;
 
-import booking.site.kitelesson.dto.UpdateKiteLessonRequestDTO;
+import booking.site.kitelesson.dto.CreateKiteLessonRequestDTO;
 
 public interface UpdateKiteLessonUseCase {
-    void updateKiteLesson(UpdateKiteLessonRequestDTO request);
+    void updateKiteLesson(CreateKiteLessonRequestDTO request);
 }
