@@ -35,7 +35,6 @@ cypress:
   image: cypress/base:10
   stage: cypress
   script:
-    #    - docker start af3048756599
     - cd Software/frontend.v5
     - npm install --legacy-peer-deps
     - npm start
