@@ -35,7 +35,7 @@ cypress:
   image: cypress/base:10
   stage: cypress
   script:
-    - docker run --publish 3000:3000 --name react-standalone react-standalone-image
+    - docker start af3048756599
     - cd Software/frontend.v5
     - npm run runHeadless
 
