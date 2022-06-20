@@ -39,10 +39,8 @@ cypress:
     - npm install --legacy-peer-deps
     - npm install pm2 -g
     - pm2 --name MyReactApp start npm -- start
-    - pm2 ps
     - npm run runHeadless
     - pm2 delete 0
-    - pm2 logs
 
 after_script:
   - echo "End CI"
