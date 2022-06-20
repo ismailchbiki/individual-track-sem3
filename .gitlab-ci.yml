@@ -4,6 +4,7 @@ stages:
   - sonar
   - deploy
 
+
 build:
   stage: build
   script:
@@ -15,6 +16,17 @@ test:
   script:
     - cd Software/Backend
     - gradle test
+
+#cypress:
+#  image: node:latest
+#  stage: cypress
+#  script:
+#    # install dependencies
+#    - npm ci --legacy-peer-deps
+#    # start the server in the background
+#    - npm run start:ci &
+#    # run Cypress tests
+#    - npm run e2e
 
 sonar:
   stage: sonar
