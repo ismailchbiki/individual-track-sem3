@@ -21,7 +21,7 @@ sonar:
   stage: sonar
   script:
     - cd Software/Backend
-    - gradle sonarqube -D "sonar.projectKey=Individual-Track-Spring" -D "sonar.host.url=http://localhost:9000" -D "sonar.login=sqp_899cd355780972c2cdc5ebbc676f85933507c446"
+    - gradle sonarqube -D "sonar.projectKey=Individual-Track-Springboot" -D "sonar.host.url=http://localhost:9000" -D "sonar.login=sqp_f1b44088638d101b9a4e63a8166fd2dc43aebb64"
 
 deploy:
   stage: deploy
@@ -37,8 +37,12 @@ cypress:
   script:
     - cd Software/frontend.v5
     - npm install --legacy-peer-deps
-    - npm start
+    - npm install pm2 -g
+    - pm2 --name MyReactApp start npm -- start
+    - pm2 ps
     - npm run runHeadless
+    - pm2 delete 0
+    - pm2 logs
 
 after_script:
   - echo "End CI"
