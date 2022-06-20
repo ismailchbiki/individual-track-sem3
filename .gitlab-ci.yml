@@ -37,6 +37,7 @@ cypress:
   script:
     - docker start af3048756599
     - cd Software/frontend.v5
+    - npm install --legacy-peer-deps
     - npm run runHeadless
 
 after_script:
