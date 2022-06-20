@@ -29,6 +29,7 @@ deploy:
     - cd Software
     - docker-compose up -d
     - docker ps
+    - docker-compose stop
 
 cypress:
   image: cypress/base:10
