@@ -1,9 +1,9 @@
 //package booking.site.booking.repository;
 //
 //import booking.site.booking.entity.Booking;
-//import lombok.AllArgsConstructor;
 //import org.junit.jupiter.api.Test;
 //import org.junit.jupiter.api.extension.ExtendWith;
+//import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 //import org.springframework.test.context.junit.jupiter.SpringExtension;
 //
@@ -14,12 +14,12 @@
 //
 //@ExtendWith(SpringExtension.class)
 //@DataJpaTest
-//@AllArgsConstructor
 //class BookingRepositoryTest {
 //
-//    private EntityManager entityManager;
-//
+//    @Autowired
 //    private BookingRepository bookingRepository;
+//    @Autowired
+//    private EntityManager entityManager;
 //
 //    @Test
 //    void save_shouldSaveBookingWithAllFields() {

@@ -5,7 +5,6 @@ import booking.site.booking.service.BookingUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.Format;
@@ -22,7 +21,7 @@ public class BookingController {
 
     @RequestMapping("/all-bookings")
     public ResponseEntity<Iterable<BookingDTO>> getAllBookings() {
-        return ResponseEntity.ok(bookingUseCase.getAllBookings());
+        return ResponseEntity.ok().body(bookingUseCase.getAllBookings());
     }
 
     @RequestMapping("/{id}")
@@ -30,7 +29,7 @@ public class BookingController {
 
         BookingDTO bookingDTO = bookingUseCase.getBookingById(id);
 
-        if (!ObjectUtils.isEmpty(bookingDTO)) {
+        if (bookingDTO.getId() != null) {
             return ResponseEntity.ok().body(bookingDTO);
         }
 
