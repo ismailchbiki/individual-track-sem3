@@ -3,7 +3,7 @@ stages:
   - test
   - sonar
   - deploy
-
+  - cypress
 
 build:
   stage: build
@@ -17,17 +17,6 @@ test:
     - cd Software/Backend
     - gradle test
 
-#cypress:
-#  image: node:latest
-#  stage: cypress
-#  script:
-#    # install dependencies
-#    - npm ci --legacy-peer-deps
-#    # start the server in the background
-#    - npm run start:ci &
-#    # run Cypress tests
-#    - npm run e2e
-
 sonar:
   stage: sonar
   script:
@@ -40,6 +29,16 @@ deploy:
     - cd Software
     - docker-compose up -d
     - docker ps
+    - docker-compose stop
+
+cypress:
+  image: cypress/base:10
+  stage: cypress
+  script:
+    - docker start af3048756599
+    - cd Software/frontend.v5
+    - npm install --legacy-peer-deps
+    - npm run runHeadless
 
 after_script:
   - echo "End CI"

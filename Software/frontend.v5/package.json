@@ -30,6 +30,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "runHeadless": "./node_modules/.bin/cypress run --headless",
     "eject": "react-scripts eject"
   },
   "author": "Ismail Chbiki",
